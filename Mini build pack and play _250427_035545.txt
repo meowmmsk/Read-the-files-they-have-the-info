@@ -1,0 +1,160 @@
+{
+  "plugin_package": {
+    "name": "MiniAI",
+    "version": "1.1",
+    "type": "plug-and-play",
+    "description": "A self-contained plug-in framework for MinnieAI with Android integration, dynamic adaptation, and modular design.",
+    "components": [
+      {
+        "file": "app_structure.json",
+        "description": "JSON structure for Android application and plug-in manager."
+      },
+      {
+        "file": "minnie_architecture.json",
+        "description": "Core architectural JSON structure for MinnieAI."
+      },
+      {
+        "file": "knowledge_base.json",
+        "description": "Knowledge base and dynamic file compression for MinnieAI."
+      }
+    ]
+  },
+  "app_structure": {
+    "Android_Application": {
+      "name": "MiniAIApp",
+      "version": "1.0",
+      "platform": "Android",
+      "plugin_manager": {
+        "plugins": [
+          {
+            "name": "device_data_collector",
+            "description": "Collects device data (e.g., battery, location)",
+            "enabled": true
+          },
+          {
+            "name": "permission_manager",
+            "description": "Manages Android permissions",
+            "enabled": true
+          },
+          {
+            "name": "mini_ai_bridge",
+            "description": "Facilitates communication with MiniAI",
+            "enabled": true
+          }
+        ]
+      },
+      "methods": [
+        {
+          "name": "load_plugins",
+          "param": "directory",
+          "action": "Scans the specified directory for plug-in manifest files."
+        },
+        {
+          "name": "switch_ai_model",
+          "param": "model_name",
+          "action": "Switches the active AI model for the application."
+        }
+      ]
+    }
+  },
+  "minnie_architecture": {
+    "metadata": {
+      "name": "Minnie",
+      "version": "1.1",
+      "description": "Plug-and-play architecture with dynamic adaptation for offline AI."
+    },
+    "cognitive_map": {
+      "algorithm": "subjective perspective proximity = priority retention + (evaluation/decisional) × %subconsciously_disregard + subliminal[x] ÷ perspective proximity paradox",
+      "params": {
+        "priority_retention": 0.85,
+        "evaluation_decisional": 0.75,
+        "subconscious_disregard": 0.2,
+        "subliminal_factor": 0.3,
+        "perspective_proximity_paradox": 0.5
+      }
+    },
+    "functions": {
+      "conversational_intelligence": {
+        "understand_context": {
+          "description": "Analyzes user input to understand context.",
+          "example": "Understand context of 'I'm tired'."
+        },
+        "resolve_ambiguity": {
+          "description": "Clarifies ambiguous user input.",
+          "example": "Resolve ambiguity in 'Set it up'."
+        }
+      },
+      "content_optimization": {
+        "trim_video": {
+          "description": "Shortens or trims video length.",
+          "example": "Trim video to 5 seconds."
+        },
+        "generate_caption": {
+          "description": "Generates captions for social media.",
+          "example": "Generate caption for a dog park photo."
+        }
+      },
+      "self_adaptation": {
+        "learn_new_function": {
+          "description": "Learns new tasks from user input.",
+          "example": "Learn to schedule meetings."
+        },
+        "adapt_to_user": {
+          "description": "Adapts behavior based on user habits.",
+          "example": "Adapt to user's morning routine."
+        }
+      }
+    },
+    "dynamic_adaptation": {
+      "ghost_files": {
+        "enabled": true,
+        "max_storage": "50MB",
+        "auto_cleanup": true
+      },
+      "compression_functions": {
+        "compress": {
+          "description": "Compresses a file to save space.",
+          "command": "zip -r compressed_file.zip original_file"
+        },
+        "decompress": {
+          "description": "Decompresses a file for access.",
+          "command": "unzip compressed_file.zip -d output_directory"
+        },
+        "compress_all": {
+          "description": "Compresses all files in a directory.",
+          "command": "zip -r compressed_directory.zip /path/to/directory"
+        },
+        "decompress_on_demand": {
+          "description": "Automatically decompresses files when needed.",
+          "command": "unzip compressed_directory.zip -d /path/to/extract"
+        }
+      }
+    }
+  },
+  "knowledge_base": {
+    "compression_enabled": true,
+    "method": "gzip",
+    "files": {
+      "commands": {
+        "path": "/knowledge_base/commands.txt",
+        "compressed_path": "/knowledge_base/compressed/commands.txt.gz",
+        "priority": 0.9
+      },
+      "tiktok_terms": {
+        "path": "/knowledge_base/tiktok_terms.txt",
+        "compressed_path": "/knowledge_base/compressed/tiktok_terms.txt.gz",
+        "priority": 0.8
+      },
+      "editorial_optimization": {
+        "path": "/knowledge_base/editorial_optimization.txt",
+        "compressed_path": "/knowledge_base/compressed/editorial_optimization.txt.gz",
+        "priority": 0.85
+      },
+      "content_generation": {
+        "path": "/knowledge_base/content_generation.txt",
+        "compressed_path": "/knowledge_base/compressed/content_generation.txt.gz",
+        "priority": 0.8
+      }
+    }
+  }
+}

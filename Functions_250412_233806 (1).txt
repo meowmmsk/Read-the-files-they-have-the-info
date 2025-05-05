@@ -1,0 +1,1135 @@
+{
+  "voice_recognition": {
+    "enabled": true,
+    "always_listening": false,
+    "trigger_phrases": [
+      "hey minnie",
+      "hi minnie",
+      "okay minnie",
+      "minnie"
+    ],
+    "confidence_threshold": 0.75,
+    "noise_tolerance": 0.3,
+    "background_filtering": true
+  },
+  "command_processing": {
+    "parser": {
+      "pattern_matching": true,
+      "intent_detection": true,
+      "contextual_awareness": true,
+      "memory_integration": true
+    },
+    "recognition_parameters": {
+      "command_confidence_threshold": 0.65,
+      "context_weighting": 0.4,
+      "memory_influence": 0.3,
+      "fallback_threshold": 0.5
+    },
+    "command_categories": [
+      "device_control",
+      "app_interaction",
+      "content_creation",
+      "information_request",
+      "setting_adjustment",
+      "multi_step_tasks"
+    ],
+    "action_confirmation": {
+      "enabled": true,
+      "dangerous_command_confirmation": true,
+      "confirmation_timeout": 15,
+      "silent_execution_for_common": true
+    }
+  },
+  "command_patterns": {
+    "device_control": [
+      {
+        "pattern": "turn (on|off) {device}",
+        "action": "toggleDevice",
+        "parameters": ["state", "device"],
+        "examples": ["turn on wifi", "turn off bluetooth"]
+      },
+      {
+        "pattern": "open {app}",
+        "action": "openApplication",
+        "parameters": ["app"],
+        "examples": ["open camera", "open messages"]
+      },
+      {
+        "pattern": "close {app}",
+        "action": "closeApplication",
+        "parameters": ["app"],
+        "examples": ["close camera", "close messages"]
+      }
+    ],
+    "content_creation": [
+      {
+        "pattern": "(take|capture) (a|) (photo|picture|selfie)",
+        "action": "captureMedia",
+        "parameters": ["type"],
+        "examples": ["take a photo", "capture a selfie"]
+      },
+      {
+        "pattern": "(start|stop|pause) (recording|video)",
+        "action": "controlRecording",
+        "parameters": ["command"],
+        "examples": ["start recording", "stop video"]
+      },
+      {
+        "pattern": "generate (a|) {content_type} (about|for|on) {topic}",
+        "action": "generateContent",
+        "parameters": ["content_type", "topic"],
+        "examples": ["generate a caption for my beach photo", "generate a post about hiking"]
+      }
+    ],
+    "information_request": [
+      {
+        "pattern": "what('s| is) {query}",
+        "action": "provideInformation",
+        "parameters": ["query"],
+        "examples": ["what's the time", "what is the weather"]
+      },
+      {
+        "pattern": "how (do|can) (i|you|we) {action}",
+        "action": "provideInstruction",
+        "parameters": ["action"],
+        "examples": ["how do I edit a video", "how can I fix my car"]
+      },
+      {
+        "pattern": "where (is|are) (the|my|) {item}",
+        "action": "locateItem",
+        "parameters": ["item"],
+        "examples": ["where is my phone", "where are my photos"]
+      }
+    ]
+  },
+  "device_integration": {
+    "permitted_functions": [
+      "camera_control",
+      "audio_control",
+      "app_launching",
+      "media_playback",
+      "system_settings",
+      "notifications"
+    ],
+    "safety_measures": {
+      "restricted_functions": [
+        "payments",
+        "sensitive_data_access",
+        "account_modifications",
+        "system_critical_changes"
+      ],
+      "permission_required": [
+        "contact_access",
+        "location_access",
+        "camera_access",
+        "microphone_access"
+      ]
+    },
+    "execution_mode": "ghost_process",
+    "feedback_mechanism": "unobtrusive_notifications"
+  },
+  "response_generation": {
+    "formats": {
+      "confirmation": {
+        "style": "brief",
+        "include_details": true,
+        "personalized": true
+      },
+      "failure": {
+        "style": "helpful",
+        "include_reason": true,
+        "include_alternatives": true
+      },
+      "information": {
+        "style": "conversational",
+        "detail_level": "adaptive",
+        "include_sources": false
+      }
+    },
+    "tone_parameters": {
+      "formality": 0.5,
+      "friendliness": 0.8,
+      "conciseness": 0.7,
+      "helpfulness": 0.9
+    },
+    "context_awareness": {
+      "remember_recent_commands": true,
+      "adapt_to_user_preferences": true,
+      "time_awareness": true,
+      "location_awareness": false
+    }
+  }
+}// Extended processUserRequest function that incorporates screen context
+function processUserRequest(userInput) {
+  // Get current screen context
+  const currentContext = this.contextual_understanding.current_context;
+  
+  // Track which knowledge domains might be relevant to this request
+  let relevantDomains = identifyRelevantDomains(userInput);
+  
+  // Add relevant domains from context
+  const contextDomains = identifyRelevantDomainsFromContext(
+    currentContext.app,
+    currentContext.activity,
+    currentContext.content_type
+  );
+  
+  // Merge domain lists without duplicates
+  relevantDomains = [...new Set([...relevantDomains, ...contextDomains])];
+  
+  // Ensure relevant files are decompressed and available
+  for (const domain of relevantDomains) {
+    // Decompress the knowledge file if needed
+    accessFile(domain);
+    
+    // Also decompress its cache file
+    accessFile(`${domain}_cache`);
+  }
+  
+  // Create a context-enriched version of the user input
+  const enrichedInput = {
+    text: userInput,
+    context: {
+      app: currentContext.app,
+      activity: currentContext.activity,
+      content_type: currentContext.content_type,
+      screen_elements: currentContext.screen_elements,
+      recognized_text: currentContext.recognized_text
+    }
+  };
+  
+  // Process the request using the cognitive map algorithm, with context
+  const response = applyAlgorithmWithContext(enrichedInput, relevantDomains);
+  
+  // After processing, compress files that are no longer needed
+  if (this.file_management.auto_compress_low_priority) {
+    setTimeout(compressAllInactive, 10000); // Run after 10 seconds
+  }
+  
+  // If the response includes actions that should be taken on the current app
+  if (response.contextual_actions && response.contextual_actions.length > 0) {
+    performContextualActions(response.contextual_actions, currentContext);
+  }
+  
+  return response;
+}
+
+// Apply the cognitive algorithm while considering screen context
+function applyAlgorithmWithContext(enrichedInput, relevantDomains) {
+  // Extract algorithm parameters
+  const params = this.cognitive_map.params;
+  
+  // Adjust parameters based on context
+  const contextAdjustedParams = adjustParamsForContext(params, enrichedInput.context);
+  
+  // Retrieve knowledge from relevant domains
+  const domainKnowledge = {};
+  for (const domain of relevantDomains) {
+    domainKnowledge[domain] = getFileContent(domain);
+  }
+  
+  // Retrieve cache knowledge for synonyms and variations
+  const cacheKnowledge = {};
+  for (const domain of relevantDomains) {
+    cacheKnowledge[domain] = getFileContent(`${domain}_cache`);
+  }
+  
+  // Apply modified algorithm with context
+  const response = {
+    textResponse: "",
+    confidence: 0,
+    sources: [],
+    contextual_actions: []
+  };
+  
+  // Calculate subjective perspective proximity with context influence
+  const subjectivePerspectiveProximity = 
+    (contextAdjustedParams.priority_retention) + 
+    (contextAdjustedParams.evaluation_decisional / 
+     (contextAdjustedParams.subconscious_disregard * 100)) * 
+    contextAdjustedParams.subliminal_factor /
+    contextAdjustedParams.perspective_proximity_paradox +
+    contextAdjustedParams.perspective_of_the_subjective;
+  
+  // Generate a response based on the calculated cognitive parameters
+  // This is where Minnie's unique processing happens
+  response.textResponse = generateResponseFromCognitiveProcessing(
+    enrichedInput.text,
+    enrichedInput.context,
+    domainKnowledge,
+    cacheKnowledge,
+    subjectivePerspectiveProximity,
+    contextAdjustedParams
+  );
+  
+  // Determine confidence based on knowledge coverage and parameter values
+  response.confidence = calculateConfidence(
+    enrichedInput.text,
+    domainKnowledge,
+    subjectivePerspectiveProximity
+  );
+  
+  // Identify any actions that should be taken in the current context
+  response.contextual_actions = identifyContextualActions(
+    enrichedInput.text,
+    enrichedInput.context,
+    response.textResponse,
+    response.confidence
+  );
+  
+  return response;
+}
+
+// Adjust cognitive parameters based on current context
+function adjustParamsForContext(baseParams, context) {
+  // Create a copy of the parameters to modify
+  const adjustedParams = {...baseParams};
+  
+  // If in a social media content creation context, adjust for creativity
+  if (isSocialMediaApp(context.app) && context.activity === "content_creation") {
+    adjustedParams.priority_retention *= 0.9; // Slightly lower to favor novel connections
+    adjustedParams.subliminal_factor *= 1.2; // Increase subliminal influence for creativity
+    adjustedParams.perspective_of_the_subjective *= 1.15; // Enhance subjective perspective
+  }
+  
+  // If in a productivity context, adjust for precision
+  if (isProductivityApp(context.app)) {
+    adjustedParams.priority_retention *= 1.1; // Increase to favor established knowledge
+    adjustedParams.subconscious_disregard *= 0.8; // Lower to reduce filtering of information
+    adjustedParams.perspective_proximity_paradox *= 1.2; // Increase for more balanced perspective
+  }
+  
+  // If viewing content rather than creating, adjust for analysis
+  if (context.activity === "browsing" || context.activity === "viewing") {
+    adjustedParams.evaluation_decisional *= 1.15; // Increase evaluation component
+    adjustedParams.perspective_of_the_subjective *= 0.9; // Reduce subjective influence
+  }
+  
+  return adjustedParams;
+}// Main function to process screen information
+function processScreenContext(screenData) {
+  // Extract relevant information from the screen
+  const currentApp = identifyCurrentApp(screenData);
+  const currentActivity = identifyCurrentActivity(screenData, currentApp);
+  const contentType = identifyContentType(screenData, currentApp, currentActivity);
+  const screenElements = identifyScreenElements(screenData, currentApp, currentActivity);
+  const recognizedText = performSelectiveOCR(screenData, screenElements);
+  
+  // Update current context
+  updateCurrentContext(currentApp, currentActivity, contentType, screenElements, recognizedText);
+  
+  // Determine relevant knowledge domains based on context
+  const relevantDomains = identifyRelevantDomainsFromContext(currentApp, currentActivity, contentType);
+  
+  // Ensure relevant knowledge files are available
+  for (const domain of relevantDomains) {
+    accessFile(domain);
+    accessFile(`${domain}_cache`);
+  }
+  
+  // Generate contextual suggestions if appropriate
+  if (this.contextual_actions.suggestion_generation.based_on_screen) {
+    const suggestions = generateContextualSuggestions(
+      currentApp, 
+      currentActivity, 
+      contentType, 
+      screenElements, 
+      recognizedText,
+      relevantDomains
+    );
+    
+    if (suggestions.length > 0 && shouldPresentSuggestions(suggestions)) {
+      queueSuggestionsForPresentation(suggestions);
+    }
+  }
+  
+  // Clean up any temporary data
+  cleanupTemporaryScreenData();
+}
+
+// Function to identify which knowledge domains are relevant based on screen context
+function identifyRelevantDomainsFromContext(app, activity, contentType) {
+  const domains = [];
+  
+  // Add general vocabulary as a base
+  domains.push("general_vocabulary");
+  
+  // Check app category
+  if (isSocialMediaApp(app)) {
+    domains.push("tiktok_terms"); // Even for other social apps, this has relevant terminology
+    domains.push("content_generation");
+    
+    if (activity === "content_creation" || activity === "editing") {
+      domains.push("editorial_optimization");
+      domains.push("video_terms");
+    }
+    
+    if (contentType === "text_entry" || activity === "commenting" || activity === "captioning") {
+      domains.push("text_analysis");
+    }
+  }
+  
+  if (isProductivityApp(app)) {
+    domains.push("text_analysis");
+    
+    if (app.includes("code") || app.includes("develop")) {
+      domains.push("code_generation");
+    }
+    
+    if (contentType === "document" || contentType === "email") {
+      domains.push("content_generation");
+    }
+  }
+  
+  if (isBrowsingApp(app)) {
+    // Check recognized content if it's a browsing app
+    if (contentHasFinancialTerms(recognizedText)) {
+      domains.push("personal_finance");
+    }
+    
+    if (contentHasTravelTerms(recognizedText)) {
+      domains.push("travel_geography");
+    }
+    
+    if (contentHasHealthTerms(recognizedText)) {
+      domains.push("mental_health_terms");
+      domains.push("first_aid");
+    }
+    
+    if (contentHasAutomotiveTerms(recognizedText)) {
+      domains.push("automotive_mechanics");
+    }
+    
+    if (contentHasCookingTerms(recognizedText)) {
+      domains.push("cooking_culinary");
+    }
+  }
+  
+  // Limit to most relevant domains to avoid unnecessary processing
+  if (domains.length > 5) {
+    // Keep general_vocabulary and the 4 most specific domains
+    domains.splice(5);
+  }
+  
+  return domains;
+}
+
+// Generate contextual suggestions based on screen content and knowledge
+function generateContextualSuggestions(app, activity, contentType, elements, text, knowledgeDomains) {
+  const suggestions = [];
+  
+  // For TikTok content creation
+  if (app === "TikTok" && activity === "content_creation") {
+    // Suggest trending sounds/effects
+    suggestions.push({
+      type: "feature_suggestion",
+      content: "Try adding trending sounds to increase visibility",
+      confidence: 0.85,
+      action: "open_sounds_panel"
+    });
+    
+    // Suggest video structure
+    suggestions.push({
+      type: "content_suggestion",
+      content: "Start with a hook question to increase viewer retention",
+      confidence: 0.8,
+      action: null
+    });
+  }
+  
+  // For text entry on social media
+  if (isSocialMediaApp(app) && contentType === "text_entry") {
+    // Caption suggestions
+    suggestions.push({
+      type: "text_suggestion",
+      content: "Add a question to encourage comments and engagement",
+      confidence: 0.75,
+      action: null
+    });
+    
+    // Hashtag suggestions based on content
+    const relevantHashtags = identifyRelevantHashtags(text, elements);
+    if (relevantHashtags.length > 0) {
+      suggestions.push({
+        type: "hashtag_suggestion",
+        content: `Try adding these hashtags: ${relevantHashtags.join(", ")}`,
+        confidence: 0.8,
+        action: "insert_hashtags",
+        data: relevantHashtags
+      });
+    }
+  }
+  
+  // For email composition
+  if (app.includes("mail") && activity === "composing") {
+    // Formal language suggestion for professional emails
+    if (isBusinessEmail(text)) {
+      suggestions.push({
+        type: "text_suggestion",
+        content: "This appears to be a business email. Would you like help with formal language?",
+        confidence: 0.75,
+        action: "suggest_formal_phrasing"
+      });
+    }
+    
+    // Follow-up reminder suggestion
+    suggestions.push({
+      type: "productivity_suggestion",
+      content: "Set a reminder to follow up if no response received?",
+      confidence: 0.7,
+      action: "set_followup_reminder"
+    });
+  }
+  
+  // For code editing
+  if (isCodeEditingContext(app, activity, contentType)) {
+    // Code completion suggestions would be handled differently
+    // But we could suggest resources or debugging tips
+    suggestions.push({
+      type: "code_suggestion",
+      content: "I notice you're working with JavaScript. Need help with any functions?",
+      confidence: 0.7,
+      action: "offer_code_help"
+    });
+  }
+  
+  // Filter suggestions based on confidence threshold
+  const threshold = this.contextual_actions.suggestion_generation.suggestion_threshold;
+  const filteredSuggestions = suggestions.filter(s => s.confidence >= threshold);
+  
+  // Limit to max allowed suggestions
+  const maxSuggestions = this.contextual_actions.suggestion_generation.max_suggestions;
+  if (filteredSuggestions.length > maxSuggestions) {
+    filteredSuggestions.sort((a, b) => b.confidence - a.confidence);
+    return filteredSuggestions.slice(0, maxSuggestions);
+  }
+  
+  return filteredSuggestions;
+}{
+  "screen_awareness": {
+    "enabled": true,
+    "privacy_focused": true,
+    "recognition_methods": {
+      "app_identification": true,
+      "content_type_detection": true,
+      "activity_classification": true,
+      "text_recognition": true,
+      "element_identification": true
+    },
+    "privacy_safeguards": {
+      "no_data_transmission": true,
+      "sensitive_content_filtering": true,
+      "user_control": true,
+      "temporary_processing": true,
+      "excluded_apps": ["banking", "healthcare", "password_managers"]
+    },
+    "contextual_modes": {
+      "browsing": {
+        "enabled": true,
+        "triggers": ["web browser active", "search activity"],
+        "capabilities": ["information enhancement", "related content suggestions"]
+      },
+      "social_media": {
+        "enabled": true,
+        "triggers": ["social app active", "content creation screen"],
+        "capabilities": ["caption suggestions", "hashtag recommendations", "trend awareness"]
+      },
+      "productivity": {
+        "enabled": true,
+        "triggers": ["document editing", "email composition", "note taking"],
+        "capabilities": ["text enhancement", "formatting suggestions", "research assistance"]
+      },
+      "entertainment": {
+        "enabled": true,
+        "triggers": ["video playing", "music active", "game running"],
+        "capabilities": ["related content", "controls assistance", "information lookup"]
+      },
+      "photography": {
+        "enabled": true,
+        "triggers": ["camera active", "photo editing", "gallery viewing"],
+        "capabilities": ["shot suggestions", "editing tips", "organization help"]
+      }
+    }
+  },
+  "contextual_understanding": {
+    "current_context": {
+      "app": null,
+      "activity": null,
+      "content_type": null,
+      "screen_elements": [],
+      "recognized_text": null,
+      "time_in_context": 0
+    },
+    "context_history": {
+      "max_entries": 10,
+      "current_entries": 0,
+      "entries": []
+    },
+    "context_memory": {
+      "short_term": {
+        "duration": 300, // seconds
+        "capacity": 5
+      },
+      "medium_term": {
+        "duration": 3600, // seconds
+        "capacity": 10
+      },
+      "long_term": {
+        "conditions": ["repeated exposure", "explicit save", "high relevance"],
+        "capacity": 50
+      }
+    },
+    "context_processing": {
+      "update_frequency": "on_change",
+      "minimum_update_interval": 1, // seconds
+      "background_processing": true,
+      "priority_when_idle": true
+    }
+  },
+  "context_handlers": {
+    "social_media": {
+      "TikTok": {
+        "screens": {
+          "feed_browsing": {
+            "recognizable_elements": ["video player", "like button", "comment section", "user profile"],
+            "detectable_activities": ["watching", "scrolling", "interaction"],
+            "assistance_capabilities": ["trend identification", "content suggestions", "caption generation"]
+          },
+          "content_creation": {
+            "recognizable_elements": ["record button", "effects panel", "text tool", "post button"],
+            "detectable_activities": ["recording", "editing", "adding text", "adding effects"],
+            "assistance_capabilities": ["effect suggestions", "timing tips", "trend alignment", "caption generation"]
+          },
+          "profile_viewing": {
+            "recognizable_elements": ["follower count", "following count", "video grid", "profile bio"],
+            "detectable_activities": ["viewing statistics", "watching profile videos", "reading bio"],
+            "assistance_capabilities": ["engagement tips", "content strategy suggestions", "profile optimization"]
+          }
+        },
+        "content_awareness": {
+          "hashtag_detection": true,
+          "trend_alignment": true,
+          "content_categorization": true,
+          "audience_analysis": true
+        }
+      },
+      "Instagram": {
+        "screens": {
+          "feed_browsing": {
+            "recognizable_elements": ["photo/video", "like button", "comment section", "user handle"],
+            "detectable_activities": ["viewing", "scrolling", "interaction"],
+            "assistance_capabilities": ["caption suggestions", "hashtag recommendations"]
+          },
+          "story_creation": {
+            "recognizable_elements": ["camera", "text tool", "sticker panel", "drawing tools"],
+            "detectable_activities": ["capturing", "editing", "adding elements"],
+            "assistance_capabilities": ["creative suggestions", "engagement boosters"]
+          }
+        }
+      }
+    },
+    "productivity": {
+      "document_editing": {
+        "screens": {
+          "text_document": {
+            "recognizable_elements": ["text area", "formatting toolbar", "cursor position"],
+            "detectable_activities": ["typing", "formatting", "reviewing"],
+            "assistance_capabilities": ["writing suggestions", "formatting help", "research assistance"]
+          },
+          "spreadsheet": {
+            "recognizable_elements": ["cells", "formula bar", "sheet tabs"],
+            "detectable_activities": ["data entry", "formula creation", "analysis"],
+            "assistance_capabilities": ["formula suggestions", "data analysis tips", "formatting recommendations"]
+          }
+        }
+      },
+      "email": {
+        "screens": {
+          "composition": {
+            "recognizable_elements": ["to field", "subject line", "message body", "send button"],
+            "detectable_activities": ["writing", "addressing", "attaching"],
+            "assistance_capabilities": ["response suggestions", "tone recommendations", "follow-up reminders"]
+          }
+        }
+      }
+    }
+  },
+  "contextual_actions": {
+    "suggestion_generation": {
+      "based_on_screen": true,
+      "based_on_activity": true,
+      "based_on_content": true,
+      "based_on_history": true,
+      "suggestion_threshold": 0.7,
+      "max_suggestions": 3,
+      "presentation_style": "unobtrusive"
+    },
+    "proactive_assistance": {
+      "enabled": true,
+      "intrusiveness_level": "minimal",
+      "trigger_threshold": 0.85,
+      "cooldown_period": 300, // seconds
+      "user_control": true
+    },
+    "response_adaptation": {
+      "context_aware_responses": true,
+      "include_contextual_details": true,
+      "adapt_vocabulary": true,
+      "adapt_complexity": true,
+      "adapt_tone": true
+    }
+  },
+  "ghost_processing": {
+    "screen_capture": {
+      "method": "accessibility_api",
+      "frequency": "on_change",
+      "resolution": "low",
+      "storage_duration": 5, // seconds
+      "processing_location": "on_device_only"
+    },
+    "element_processing": {
+      "method": "element_tree_analysis",
+      "detail_level": "structural",
+      "semantic_understanding": true,
+      "processing_location": "on_device_only"
+    },
+    "ocr_processing": {
+      "enabled": true,
+      "selective_regions": true,
+      "confidence_threshold": 0.8,
+      "processing_location": "on_device_only"
+    }
+  }
+}// Initialize Minnie's file system
+function initializeFileSystem() {
+  console.log("Initializing Minnie's file system...");
+  
+  // Create necessary directories
+  createDirectoryIfNotExists("/knowledge_base/");
+  createDirectoryIfNotExists("/knowledge_base/compressed/");
+  createDirectoryIfNotExists("/cache_files/");
+  createDirectoryIfNotExists("/cache_files/compressed/");
+  createDirectoryIfNotExists("/ghost_files/");
+  
+  // Check for existing files and their compression status
+  updateFileStatus();
+  
+  // Decompress essential files for quick startup
+  const essentialFiles = ["general_vocabulary", "commands"];
+  for (const fileId of essentialFiles) {
+    decompressFile(fileId);
+    decompressFile(`${fileId}_cache`);
+  }
+  
+  console.log("File system initialized successfully");
+}
+
+// Update the status of all files (compressed/uncompressed)
+function updateFileStatus() {
+  // Check knowledge base files
+  for (const [fileId, fileDetails] of Object.entries(this.knowledge_base.files)) {
+    fileDetails.uncompressed_available = fileExists(fileDetails.path);
+    fileDetails.is_compressed = fileExists(fileDetails.compressed_path);
+  }
+  
+  // Check cache files
+  for (const [fileId, fileDetails] of Object.entries(this.cache_files.files)) {
+    fileDetails.uncompressed_available = fileExists(fileDetails.path);
+    fileDetails.is_compressed = fileExists(fileDetails.compressed_path);
+  }
+}
+
+// Start up Minnie
+function startup() {
+  console.log("Starting Minnie...");
+  
+  // Initialize file system
+  initializeFileSystem();
+  
+  // Set up any scheduled tasks
+  if (this.file_management.auto_compress_low_priority) {
+    setInterval(compressAllInactive, 300000); // Every 5 minutes
+  }
+  
+  console.log("Minnie is ready");
+}// Main function to process user requests
+function processUserRequest(userInput) {
+  // Track which knowledge domains might be relevant to this request
+  const relevantDomains = identifyRelevantDomains(userInput);
+  
+  // Ensure relevant files are decompressed and available
+  for (const domain of relevantDomains) {
+    // Decompress the knowledge file if needed
+    accessFile(domain);
+    
+    // Also decompress its cache file
+    accessFile(`${domain}_cache`);
+  }
+  
+  // Process the request using the cognitive map algorithm
+  const response = applyAlgorithm(userInput, relevantDomains);
+  
+  // After processing, compress files that are no longer needed
+  if (this.file_management.auto_compress_low_priority) {
+    setTimeout(compressAllInactive, 10000); // Run after 10 seconds
+  }
+  
+  return response;
+}
+
+// Function to identify which knowledge domains are relevant to a user input
+function identifyRelevantDomains(userInput) {
+  const domains = [];
+  const input = userInput.toLowerCase();
+  
+  // Check for keywords related to each domain
+  // General vocabulary is always relevant
+  domains.push("general_vocabulary");
+  
+  // Check for command-related keywords
+  if (input.includes("turn on") || input.includes("open") || input.includes("start") ||
+      input.includes("activate") || input.includes("set")) {
+    domains.push("commands");
+  }
+  
+  // Check for TikTok-related keywords
+  if (input.includes("tiktok") || input.includes("video") || input.includes("post") ||
+      input.includes("trending") || input.includes("viral")) {
+    domains.push("tiktok_terms");
+  }
+  
+  // Check for video editing keywords
+  if (input.includes("edit") || input.includes("trim") || input.includes("cut") ||
+      input.includes("transition") || input.includes("effect")) {
+    domains.push("editorial_optimization");
+    domains.push("video_terms");
+  }
+  
+  // Check for content creation keywords
+  if (input.includes("create") || input.includes("write") || input.includes("post") ||
+      input.includes("caption") || input.includes("content")) {
+    domains.push("content_generation");
+  }
+  
+  // Check for text analysis keywords
+  if (input.includes("analyze") || input.includes("summarize") || input.includes("extract") ||
+      input.includes("key points") || input.includes("main idea")) {
+    domains.push("text_analysis");
+  }
+  
+  // Check for prediction keywords
+  if (input.includes("predict") || input.includes("suggest") || input.includes("recommend") ||
+      input.includes("what should") || input.includes("will")) {
+    domains.push("predictive_terms");
+  }
+  
+  // Check for emotional keywords
+  if (input.includes("feel") || input.includes("happy") || input.includes("sad") ||
+      input.includes("angry") || input.includes("excited")) {
+    domains.push("sentiment_terms");
+  }
+  
+  // Check for programming keywords
+  if (input.includes("code") || input.includes("program") || input.includes("function") ||
+      input.includes("javascript") || input.includes("python")) {
+    domains.push("code_generation");
+  }
+  
+  // Check for mental health keywords
+  if (input.includes("anxiety") || input.includes("depression") || input.includes("stress") ||
+      input.includes("therapy") || input.includes("mental health")) {
+    domains.push("mental_health_terms");
+  }
+  
+  // Check for first aid keywords
+  if (input.includes("injury") || input.includes("hurt") || input.includes("emergency") ||
+      input.includes("bandage") || input.includes("pain")) {
+    domains.push("first_aid");
+  }
+  
+  // Check for automotive keywords
+  if (input.includes("car") || input.includes("engine") || input.includes("vehicle") ||
+      input.includes("repair") || input.includes("mechanic")) {
+    domains.push("automotive_mechanics");
+  }
+  
+  // Check for cooking keywords
+  if (input.includes("cook") || input.includes("recipe") || input.includes("food") ||
+      input.includes("bake") || input.includes("ingredient")) {
+    domains.push("cooking_culinary");
+  }
+  
+  // Check for travel keywords
+  if (input.includes("travel") || input.includes("trip") || input.includes("flight") ||
+      input.includes("hotel") || input.includes("vacation")) {
+    domains.push("travel_geography");
+  }
+  
+  // Check for financial keywords
+  if (input.includes("money") || input.includes("budget") || input.includes("invest") ||
+      input.includes("finance") || input.includes("save")) {
+    domains.push("personal_finance");
+  }
+  
+  // If no specific domain was identified, use the most common ones
+  if (domains.length === 1) { // Only general_vocabulary
+    domains.push("commands"); // Basic commands are generally useful
+    domains.push("content_generation"); // Helpful for generating responses
+  }
+  
+  return domains;
+}import json
+import difflib
+import os
+
+# Simulated in-memory cache
+cache = {}
+
+# Function to load the structured framework
+def load_structure(file_path="framework_with_mini_ai.json"):
+    try:
+        with open(file_path, "r") as file:
+            return json.load(file)
+    except FileNotFoundError:
+        print(f"Structure file {file_path} not found!")
+        return {}
+
+# Function to save the structured framework
+def save_structure(structure, file_path="framework_with_mini_ai.json"):
+    with open(file_path, "w") as file:
+        json.dump(structure, file, indent=4)
+    print(f"Structure saved to {file_path}")
+
+# Function to load the ghost update with error handling
+def load_ghost_update(file_path="ghost_update.txt"):
+    try:
+        with open(file_path, "r") as file:
+            data = json.load(file)
+            for key, value in data.items():
+                if not isinstance(value, dict) or "desc" not in value:
+                    raise ValueError(f"Invalid format in ghost_update.txt for key: {key}")
+            return data
+    except FileNotFoundError:
+        print("Ghost update file not found!")
+        return {}
+    except (json.JSONDecodeError, ValueError) as e:
+        print(f"Error loading ghost update: {e}")
+        return {}
+
+# Function to generate synonyms and antonyms using the thesaurus
+def generate_synonyms_antonyms(function_name, description, thesaurus):
+    action = function_name.split("_")[0]
+    if " to " in description:
+        action = description.split(" to ")[-1].split()[0]
+    if action in thesaurus:
+        return thesaurus[action]["synonyms"], thesaurus[action]["antonyms"]
+    return [action], []
+
+# Function to check conceptual similarity between two functions
+def are_conceptually_similar(value1, value2, cache_data, key1, key2):
+    category1 = next((alg["pm"]["category"] for alg in cache_data if alg["aid"] == key1), None)
+    category2 = next((alg["pm"]["category"] for alg in cache_data if alg["aid"] == key2), None)
+    same_category = category1 == category2
+    usage_similarity = difflib.SequenceMatcher(None, value1["usage_example"], value2["usage_example"]).ratio()
+    related_overlap = len(set(value1["related_functions"]) & set(value2["related_functions"])) > 0
+    synonym_match = key2 in cache_data.get(key1, {"synonyms": []})["synonyms"] or key1 in cache_data.get(key2, {"synonyms": []})["synonyms"]
+    matches = sum([same_category, usage_similarity > 0.7, related_overlap, synonym_match])
+    if matches >= 3:
+        return True
+    if value1["description"] == value2["description"] and not same_category:
+        return False
+    return False
+
+# Function to update the cache with synonyms, antonyms, slang, emojis, and frequency
+def update_cache_with_synonyms_antonyms(structure):
+    cache_data = structure["ar"]["cm"]["cache"]
+    thesaurus = structure["ar"]["cm"]["thesaurus"]
+    slang_data = structure["ar"]["cm"]["slang_and_abbreviations"]
+    emoji_data = structure["ar"]["cm"]["emojis"]
+
+    # Collect all functions from algColl
+    knowledge_base = {alg["aid"]: {
+        "description": alg["desc"],
+        "usage_example": alg["pm"]["usage_example"],
+        "related_functions": alg["pm"]["related_functions"],
+        "category": alg["pm"].get("category", "1a: Conversational Intelligence")
+    } for alg in structure["algColl"]["algs"]}
+
+    for function_name, details in knowledge_base.items():
+        description = details["description"]
+        synonyms, antonyms = generate_synonyms_antonyms(function_name, description, thesaurus)
+        unique_synonyms = list(set(synonyms))
+        unique_antonyms = list(set(antonyms))
+        related_slang = []
+        for term, info in slang_data.items():
+            if function_name in info["related_functions"]:
+                related_slang.append({"term": term, "frequency": info.get("frequency", 0)})
+        related_emojis = [emoji for emoji, info in emoji_data.items() if function_name in info["related_functions"]]
+        cache_data[function_name] = {
+            "synonyms": unique_synonyms,
+            "antonyms": unique_antonyms,
+            "description": description,
+            "category": details["category"],
+            "usage_example": details["usage_example"],
+            "related_functions": details["related_functions"],
+            "related_slang": related_slang,
+            "related_emojis": related_emojis
+        }
+    structure["ar"]["cm"]["cache"] = cache_data
+    return structure
+
+# Function to apply the ghost update
+def apply_ghost_update(structure, ghost_update):
+    for key, value in ghost_update.items():
+        category_map = {
+            "understand_context": "1a: Conversational Intelligence",
+            "resolve_ambiguity": "1a: Conversational Intelligence",
+            "process_voice_command": "1a: Conversational Intelligence",
+            "convert_speech_to_text": "1a: Conversational Intelligence",
+            "handle_voice_error": "1a: Conversational Intelligence",
+            "summarize_text": "1a: Conversational Intelligence",
+            "respond_empathically": "1a: Conversational Intelligence",
+            "translate_text": "1a: Conversational Intelligence",
+            "trim_video": "1b: Content Optimization",
+            "edit_and_upload_video": "1b: Content Optimization",
+            "cross_platform_optimize": "1b: Content Optimization",
+            "suggest_hashtags": "1b: Content Optimization",
+            "generate_caption": "1c: Creative Generation",
+            "create_and_share_post": "1c: Creative Generation",
+            "set_reminder": "1d: Task Automation",
+            "send_message": "1d: Task Automation",
+            "play_music": "1d: Task Automation",
+            "set_table": "1e: Home Automation",
+            "learn_new_function": "1f: Self-Adaptation",
+            "adapt_to_user": "1f: Self-Adaptation",
+            "predict_next_action": "1f: Self-Adaptation",
+            "handle_error": "1g: System Management",
+            "offline_fallback": "1g: System Management"
+        }
+        category = category_map.get(key, "1a: Conversational Intelligence")
+        structure["algColl"]["algs"].append({
+            "aid": key,
+            "desc": value["desc"],
+            "pm": {
+                "usage_example": value["usage_example"],
+                "related_functions": value["related_functions"],
+                "category": category
+            }
+        })
+    return structure
+
+# Function to remove redundancies with conceptual awareness
+def remove_redundancies(structure):
+    cache_data = structure["ar"]["cm"]["cache"]
+    knowledge_base = {alg["aid"]: {
+        "description": alg["desc"],
+        "usage_example": alg["pm"]["usage_example"],
+        "related_functions": alg["pm"]["related_functions"]
+    } for alg in structure["algColl"]["algs"]}
+
+    entries = list(knowledge_base.items())
+    to_remove = set()
+
+    for i, (key1, value1) in enumerate(entries):
+        if key1 in to_remove:
+            continue
+        for j, (key2, value2) in enumerate(entries[i+1:]):
+            if are_conceptually_similar(value1, value2, cache_data, key1, key2):
+                desc1 = value1["description"].split(" to ")[-1]
+                desc2 = value2["description"].split(" to ")[-1]
+                combined_description = f"function to {desc1} or {desc2}" if desc1 != desc2 else value1["description"]
+                knowledge_base[key1]["description"] = combined_description
+                usage_similarity = difflib.SequenceMatcher(None, value1["usage_example"], value2["usage_example"]).ratio()
+                knowledge_base[key1]["usage_example"] = value1["usage_example"] if usage_similarity > 0.5 else f"{value1['usage_example']} or {value2['usage_example']}"
+                knowledge_base[key1]["related_functions"] = list(set(value1["related_functions"] + value2["related_functions"]))
+                to_remove.add(key2)
+            elif difflib.SequenceMatcher(None, value1["description"], value2["description"]).ratio() > 0.9:
+                if are_conceptually_similar(value1, value2, cache_data, key1, key2):
+                    desc1 = value1["description"].split(" to ")[-1]
+                    desc2 = value2["description"].split(" to ")[-1]
+                    combined_description = f"function to {desc1} or {desc2}" if desc1 != desc2 else value1["description"]
+                    knowledge_base[key1]["description"] = combined_description
+                    knowledge_base[key1]["usage_example"] = value1["usage_example"] if usage_similarity > 0.5 else f"{value1['usage_example']} or {value2['usage_example']}"
+                    knowledge_base[key1]["related_functions"] = list(set(value1["related_functions"] + value2["related_functions"]))
+                    to_remove.add(key2)
+
+    structure["algColl"]["algs"] = [alg for alg in structure["algColl"]["algs"] if alg["aid"] not in to_remove]
+    return structure
+
+# Function to refresh the system
+def refresh_system(structure):
+    global cache
+    cache.clear()
+    structure = update_cache_with_synonyms_antonyms(structure)
+    save_structure(structure)
+    cache = structure["ar"]["cm"]["cache"]
+    print("System refreshed successfully!")
+
+# Function to check if all files are saved
+def check_files_saved():
+    files = ["framework_with_mini_ai.json", "ghost_update.txt"]
+    for file in files:
+        if not os.path.exists(file):
+            print(f"Warning: {file} does not exist!")
+            return False
+    print("All files are saved successfully!")
+    return True
+
+# Main function to handle the ghost update
+def ghost_update():
+    print("Starting ghost update...")
+
+    # Load the current structure
+    structure = load_structure()
+    print("Current structure (algColl):", structure["algColl"])
+
+    # Load the ghost update
+    ghost_update = load_ghost_update()
+    if not ghost_update:
+        print("No updates to apply.")
+        return
+
+    # Apply the ghost update
+    structure = apply_ghost_update(structure, ghost_update)
+    print("After applying ghost update (algColl):", structure["algColl"])
+
+    # Remove redundancies with conceptual awareness
+    structure = remove_redundancies(structure)
+    print("After removing redundancies (algColl):", structure["algColl"])
+
+    # Save the updated structure
+    save_structure(structure)
+    print("Structure updated and saved.")
+
+    # Refresh the system
+    refresh_system(structure)
+
+    print("Ghost update complete!")
+
+# Example usage
+if __name__ == "__main__":
+    # Ensure the structure file exists
+    if not os.path.exists("framework_with_mini_ai.json"):
+        print("Please ensure framework_with_mini_ai.json exists before running the script.")
+    else:
+        # Simulate an empty ghost update
+        ghost_update_data = {}
+        with open("ghost_update.txt", "w") as file:
+            json.dump(ghost_update_data, file)
+
+        # Run the ghost update to initialize everything
+        ghost_update()
+
+        # Check if all files are saved
+        if check_files_saved():
+            print("All files are ready for packaging!")
+        else:
+            print("Please ensure all files are saved before proceeding.")
+
+        # Command loop for user interaction
+        while True:
+            command = input("Enter command (type 'ghost-update' to update, 'exit' to quit): ")
+            if command == "ghost-update":
+                ghost_update()
+            elif command == "exit":
+                break

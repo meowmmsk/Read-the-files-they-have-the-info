@@ -1,0 +1,20 @@
+{
+  "storage_path": {
+    "ghost_files": {
+      "active": ["temp_file_1.txt", "temp_file_2.txt"],
+      "archived": ["archived_ghost_file_1.txt", "archived_ghost_file_2.txt"]
+    },
+    "conversational_data": {
+      "recent_engagements": ["engagement_1.json", "engagement_2.json"],
+      "archived_engagements": ["archive_1.json", "archive_2.json"]
+    },
+    "cache_files": {
+      "active_cache": {
+        "terms": ["term_1", "term_2"],
+        "patterns": ["pattern_1", "pattern_2"]
+      },
+      "archived_cache": ["cached_terms_old.json", "cached_patterns_old.json"]
+    },
+    "knowledge_base_backups": ["knowledge_base_backup_1.json", "knowledge_base_backup_2.json"]
+  }
+}

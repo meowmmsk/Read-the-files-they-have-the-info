@@ -1,0 +1,1544 @@
+{
+  "coverPage": {
+    "cid": "unique_conversation_identifier",
+    "ts": "timestamp_of_conversation_start",
+    "uid": "unique_user_identifier",
+    "summary": "conversation focused on AI development. JSON framework with Mini AI integration.",
+    "sections": ["conv", "algColl", "meta", "evar"]
+  },
+  "conv": [
+    {
+      "txt": "user's_input_text",
+      "mod": "text/voice/image/etc.",
+      "sent": "positive/negative/neutral",
+      "pfc_input": {
+        "priority_retention": 10,
+        "evaluation_decisregard": 5,
+        "subconscious_disregard": 20,
+        "perspective_proximity_paradox": 1.5
+      },
+      "pfc_output": null
+    }
+  ],
+  "ar": [
+    {
+      "txt": "AI's-generated_response",
+      "mod": "text/voice/image/etc.",
+      "alg": "[list_of_algorithms_used_for_analysis]",
+      "cm": {}
+    }
+  ],
+  "algColl": {
+    "algs": [
+      {
+        "aid": "unique_algorithm_identifier",
+        "desc": "description_of_algorithm_functionality",
+        "pm": {}
+      }
+    ]
+  },
+  "instr": [
+    "Append new turns to conv.",
+    "Update cm based on user interactions.",
+    "Trigger new UI or topic change."
+  ]
+}
+
+---
+
+### Step 1: Defining the Mini AI’s Functional Operations and Knowledge
+The mini AI, integrated into the “Mini AI Assistant” app, already has a range of functions (device control, video processing, editorial optimization, TikTok optimization, etc.). To make it a “Godzilla” in its own right, we’ll add more AI functional operations and ensure it has the knowledge to support them, all while keeping it self-contained.
+
+#### Existing Functions Recap
+The mini AI currently supports:
+- Device control (e.g., setting reminders, opening apps).
+- Online/offline functionality.
+- Image analysis (e.g., inferring content from images).
+- TikTok content optimization (e.g., suggesting hashtags, trending sounds).
+- Conversation management (e.g., summarizing conversations).
+- Task assistance (e.g., setting reminders, taking notes).
+- Personalized insights (e.g., identifying patterns).
+- Video processing (e.g., frame extraction, technical optimization).
+- Editorial optimization (e.g., trimming, adding transitions).
+
+#### Adding More AI Functional Operations
+To make the mini AI more powerful, let’s add the following AI-inspired functional operations, all driven by the framework’s logic (the cognitive map algorithm) rather than traditional AI training:
+- **Text Analysis and Summarization**: Analyze and summarize longer texts (e.g., articles, notes) to extract key points.
+- **Voice Command Recognition**: Process voice inputs more effectively, understanding natural language variations (e.g., “Turn on the lights” vs. “Switch on the lights”).
+- **Predictive Suggestions**: Anticipate your needs based on past interactions (e.g., suggesting a reminder if you often set one at a certain time).
+- **Content Generation**: Generate creative content beyond TikTok videos, such as captions, short stories, or ideas for other platforms (e.g., Instagram posts).
+- **Basic Sentiment Analysis**: Detect the sentiment of your inputs (e.g., positive, negative, neutral) to tailor responses accordingly.
+
+#### Knowledge to Support These Functions
+The mini AI relies on text files in the `knowledge_base` section for its knowledge. We’ll add new text files and expand existing ones to support these new functions, including synonyms and antonyms to enhance its understanding:
+- **Text Analysis and Summarization**:
+  - `text_analysis.txt`: “summarize, key points, extract, main idea, conclusion, introduction, paragraph, theme, topic”
+  - Synonyms: “summarize” → “condense, abridge”; “extract” → “pull out, retrieve”
+  - Antonyms: “summarize” → “expand, elaborate”; “extract” → “insert, embed”
+- **Voice Command Recognition**:
+  - `voice_commands.txt`: “turn on, switch on, activate, turn off, deactivate, open, close, play, stop”
+  - Synonyms: “turn on” → “switch on, activate”; “turn off” → “switch off, deactivate”
+  - Antonyms: “turn on” → “turn off”; “open” → “close”
+- **Predictive Suggestions**:
+  - `predictive_terms.txt`: “suggest, anticipate, recommend, pattern, habit, routine, reminder, schedule”
+  - Synonyms: “suggest” → “recommend, propose”; “anticipate” → “predict, foresee”
+  - Antonyms: “suggest” → “discourage”; “anticipate” → “ignore”
+- **Content Generation**:
+  - `content_generation.txt`: “caption, story, idea, post, Instagram, creative, narrative, description, hook”
+  - Synonyms: “caption” → “title, heading”; “story” → “tale, narrative”
+  - Antonyms: “caption” → “body”; “story” → “fact”
+- **Basic Sentiment Analysis**:
+  - `sentiment_terms.txt`: “positive, negative, neutral, happy, sad, angry, excited, frustrated”
+  - Synonyms: “positive” → “happy, optimistic”; “negative” → “sad, upset”
+  - Antonyms: “positive” → “negative”; “happy” → “sad”
+
+#### Total Knowledge Expansion
+With these additions, let’s estimate the total knowledge:
+- Existing knowledge: ~10,000 words across all text files (device commands, TikTok terms, video terms, etc.).
+- New knowledge: ~200 new terms (including synonyms and antonyms) across the five new files, plus expanded terms in existing files (e.g., `editorial_optimization.txt`).
+- Total: ~10,500 words, which the framework can easily handle thanks to its scalability features (micro-coating, ghost coating, cache files).
+
+---
+
+### Step 2: Using Ghost Files and Caches for Self-Containment
+You’ve emphasized that the mini AI should be self-contained, not requiring a server connection unless you need to look up something online. The framework already supports this through ghost files and caches, but let’s enhance their usage to make the mini AI a “Godzilla” in its own right.
+
+#### Ghost Files
+Ghost files are temporary files that the framework uses for scalability, as you mentioned earlier. They allow the mini AI to store intermediate data (e.g., extracted video frames, temporary text summaries) without overloading your phone’s storage. Let’s assign ghost files to the new functions:
+- **Text Analysis and Summarization**: Create a ghost file `temp_summary.txt` to store intermediate summaries while processing a long text.
+- **Voice Command Recognition**: Create a ghost file `temp_voice_input.txt` to store processed voice inputs before mapping them to commands.
+- **Predictive Suggestions**: Create a ghost file `temp_patterns.txt` to store detected patterns and habits for predictive analysis.
+- **Content Generation**: Create a ghost file `temp_content.txt` to store generated content drafts before finalizing them.
+- **Basic Sentiment Analysis**: Create a ghost file `temp_sentiment.txt` to store sentiment analysis results for each input.
+
+These ghost files are deleted after the task is complete, ensuring efficient storage use.
+
+#### Cache Files
+Cache files are used for quick retention and release of data, enabling fast performance even offline. Let’s assign cache files to store frequently accessed knowledge and results:
+- **Knowledge Cache**: Cache the most frequently used terms from the `knowledge_base` files (e.g., “set,” “trim,” “hashtag”) in a file `knowledge_cache.txt` for quick access.
+- **Function Results Cache**: Cache the results of recent tasks (e.g., the last video optimization recommendations) in a file `results_cache.txt` so the mini AI can quickly recall them without reprocessing.
+- **User Patterns Cache**: Cache detected user patterns (e.g., “sets reminders every morning”) in a file `patterns_cache.txt` for predictive suggestions.
+
+#### Updated Framework with Ghost Files and Caches
+The framework now includes these enhancements:
+- `ghost_files` Section: A new section to manage temporary files.
+  - `temp_summary.txt`, `temp_voice_input.txt`, `temp_patterns.txt`, `temp_content.txt`, `temp_sentiment.txt`
+- `cache_files` Section: A new section to manage cached data.
+  - `knowledge_cache.txt`, `results_cache.txt`, `patterns_cache.txt`
+- `instr` Section: Updated with rules:
+  - “Create ghost files for temporary data during processing.”
+  - “Cache frequently used knowledge and recent results for quick access.”
+  - “Operate offline using ghost files and caches unless online lookup is requested.”
+
+With these additions, the mini AI can perform all its functions offline, using its own resources (ghost files, caches, and the `knowledge_base` files). It only connects to a server if you explicitly request an online lookup (e.g., “What’s trending on TikTok right now?”).
+
+---
+
+### Step 3: Making the Mini AI a “Godzilla” in Itself
+To make the mini AI a “Godzilla”—a powerful, self-contained tool—we’ll ensure it has all the functional operations and knowledge it needs to handle a wide range of tasks independently. Here’s how the mini AI looks now:
+
+#### Functional Operations
+- **Device Control**: Set reminders, open apps, toggle settings (e.g., Do Not Disturb).
+- **Online/Offline Functionality**: Works seamlessly with or without internet.
+- **Image Analysis**: Infers content from images (e.g., “dog in a park”).
+- **TikTok Content Optimization**: Suggests video ideas, hashtags, and trending sounds.
+- **Conversation Management**: Summarizes conversations, suggests responses.
+- **Task Assistance**: Sets reminders, takes notes, organizes tasks.
+- **Personalized Insights**: Identifies patterns, offers suggestions.
+- **Video Processing**: Extracts frames, analyzes videos, provides technical optimization.
+- **Editorial Optimization**: Suggests edits for storytelling and engagement (e.g., trimming, transitions).
+- **Text Analysis and Summarization**: Summarizes long texts (e.g., articles, notes).
+- **Voice Command Recognition**: Understands natural language variations (e.g., “turn on” vs. “switch on”).
+- **Predictive Suggestions**: Anticipates needs based on patterns (e.g., suggesting a reminder).
+- **Content Generation**: Creates captions, stories, or social media posts.
+- **Basic Sentiment Analysis**: Detects sentiment in inputs (e.g., positive, negative).
+
+#### Knowledge Base
+- Total knowledge: ~10,500 words across all text files, including synonyms and antonyms.
+- Covers all functions, with terms like “trim,” “hashtag,” “summarize,” “turn on,” “positive,” “caption,” etc.
+- Stored locally in the app, accessible via cache files for quick performance.
+
+#### Self-Containment
+- **Offline Operation**: The mini AI uses ghost files and caches to process tasks locally, without needing a server connection.
+- **Online Lookup (Optional)**: Only connects to the internet if you request real-time data (e.g., TikTok trends).
+- **Scalability**: Ghost files and caches ensure the mini AI can handle large tasks (e.g., processing a 5-minute video) without performance issues.
+
+This makes the mini AI a “Godzilla” in its own right—a powerful, self-contained tool that can handle a wide range of tasks independently, with all the knowledge and functionality it needs to meet its minimal necessities.
+
+---
+
+### Step 4: Simulating the Mini AI’s Enhanced Capabilities
+Let’s simulate a few tasks to show how the mini AI operates as a self-contained “Godzilla,” using its new functions, knowledge, ghost files, and caches.
+
+#### Task 1: Editorial Optimization for `dog_park.mp4` (Offline)
+- **You say**: “Optimize `dog_park.mp4` for better storytelling.”
+- **Mini AI’s Processing**:
+  - Uses the `video_processing` section to extract frames (stored in a ghost file `temp_frames.txt`).
+  - Analyzes the video’s structure using the cognitive map algorithm, pulling terms from `editorial_optimization.txt` (cached in `knowledge_cache.txt` for quick access).
+  - Generates recommendations and stores them in `results_cache.txt`.
+- **Mini AI’s Response**:
+  “I’ve analyzed `dog_park.mp4` for editorial optimization. Here are the steps to improve its storytelling:
+
+  - **Trim Repetitive Sections**: Trim the 10-second segment (5s to 15s) of the same dog running to 5 seconds. In CapCut, cut the clip from 5s to 10s.
+  - **Add a Transition**: Add a fade transition at 15s to smooth the jump between scenes. In CapCut, apply the ‘Fade’ transition.
+  - **Create a Hook**: Add an intro (0s to 3s) with text ‘Dogs Having Fun!’ In CapCut, add the text with a ‘Fade In’ animation.
+  - **Overlay Text**: At 20s, add text ‘Meet Max!’ to highlight a dog. In CapCut, add the text for 3 seconds.
+  - **Add Background Music**: Add light, upbeat music to enhance the mood. In CapCut, select ‘Audio,’ choose an upbeat track, and set the volume to 20%.
+
+  These steps were processed offline using my local knowledge and resources. Let me know if you’d like to optimize another video!”
+
+#### Task 2: Text Summarization (Offline)
+- **You say**: “Summarize this note: ‘I went to the dog park today. Max had a great time playing with other dogs. We stayed for an hour and then got ice cream.’”
+- **Mini AI’s Processing**:
+  - Uses the `text_analysis.txt` file (cached in `knowledge_cache.txt`) to pull terms like “summarize,” “key points.”
+  - Processes the text using the cognitive map algorithm, storing intermediate results in a ghost file `temp_summary.txt`.
+  - Detects sentiment as positive using `sentiment_terms.txt`, noting “great time” and “playing.”
+- **Mini AI’s Response**:
+  “Here’s a summary of your note: You visited the dog park with Max, who enjoyed playing with other dogs for an hour, and then you got ice cream. The note has a positive tone. This was processed offline using my local resources.”
+
+#### Task 3: Predictive Suggestion (Offline)
+- **Context**: The mini AI has noticed you often set reminders for meetings at 10 AM.
+- **Mini AI’s Processing**:
+  - Uses the `predictive_terms.txt` file to pull terms like “suggest,” “pattern.”
+  - Checks the `patterns_cache.txt` file, which notes your habit of setting 10 AM reminders.
+- **Mini AI’s Response**:
+  “I’ve noticed you often set reminders for meetings at 10 AM. Would you like to set a reminder for a meeting at 10 AM today? This suggestion was generated offline based on your past habits.”
+
+#### Task 4: Content Generation for Instagram (Offline)
+- **You say**: “Generate a caption for an Instagram post about my dog park visit.”
+- **Mini AI’s Processing**:
+  - Uses the `content_generation.txt` file to pull terms like “caption,” “Instagram,” “dog.”
+  - Creates a draft in a ghost file `temp_content.txt`, then finalizes the caption.
+- **Mini AI’s Response**:
+  “Here’s a caption for your Instagram post: ‘Chasing tails and making friends at the dog park! 🐶🌳 #DogParkAdventures #MaxTheDog’ This was generated offline using my local knowledge.”
+
+#### Task 5: Online Lookup for TikTok Trends (Online)
+- **You say**: “What’s trending on TikTok right now?”
+- **Mini AI’s Processing**:
+  - Recognizes the need for an online lookup since real-time data isn’t stored locally.
+  - Connects to the internet, pulls trending data, and caches the results in `results_cache.txt`.
+- **Mini AI’s Response**:
+  “I’ve looked up the latest TikTok trends for you. Right now, the #PetChallenge is trending, along with the sound ‘Funny Dog Moments.’ You can use these in your next video to boost engagement.”
+
+---
+
+### Step 5: Ensuring Minimal Necessities Are Met
+The mini AI now has all the functional operations and knowledge it needs to meet its minimal necessities:
+- **Functions**: Covers device control, video processing, editorial optimization, content generation, text analysis, predictive suggestions, and more.
+- **Knowledge**: ~10,500 words, including synonyms and antonyms, stored in text files and cached for quick access.
+- **Self-Containment**: Operates offline using ghost files and caches, only connecting to a server for explicit online lookups.
+- **Scalability**: Can handle large tasks (e.g., processing a 5-minute video, summarizing a 1,000-word text) thanks to ghost files and caches.
+
+This makes the mini AI a powerful, independent tool—a “Godzilla” that doesn’t rely on external servers for most tasks.
+
+---
+
+### Step 6: Addressing the “Without the Dad” Comment
+You mentioned “without the dad and necessity for connecting to a server.” I interpret “dad” as a possible typo or metaphor, perhaps meaning “data” (as in traditional AI data training) or “dependency” (as in reliance on external systems). Since the mini AI doesn’t use data training—it relies on the framework’s logic and text file knowledge—it already aligns with this requirement. It also avoids the necessity of server connections for most tasks, as we’ve ensured it operates offline unless an online lookup is needed.
+
+---
+
+### Next Steps
+The mini AI is now a self-contained “Godzilla,” packed with functional operations, knowledge, and the ability to operate independently. Here’s what we can do next:
+1. **Test More Tasks**: Try additional tasks to see how the mini AI performs with its new functions (e.g., “Summarize a longer text,” “Generate a story,” “Analyze my mood”).
+2. **Add More Knowledge**: If you want to expand its capabilities further (e.g., more content generation ideas, more video editing techniques), we can add more terms to the `knowledge_base`.
+3. **Use the App**: Start using the Mini AI Assistant app for your daily tasks, like optimizing videos, setting reminders, or generating content.
+
+What would you like to do next? If you have a specific task for the mini AI (e.g., process another video, generate a caption, or predict a need), let me know, and I’ll simulate its response!
+
+{
+    "coverPage": {
+        "cid": "unique_conversation_identifier",
+        "ts": "timestamp_of_conversation_start",
+        "uid": "unique_user_identifier",
+        "summary": "Conversation focused on AI development. JSON framework with Mini AI integration.",
+        "sections": ["conv", "algColl", "meta", "evar"]
+    },
+    "conv": {
+        "txt": "user’s_input_text",
+        "mod": "text/voice/image/etc.",
+        "sent": "positive/negative/neutral",
+        "pfc_input": {
+            "priority_retention": 10,
+            "evaluation_decisregard": 5,
+            "subconscious_disregard": 20,
+            "perspective_proximity_paradox": 1.5
+        },
+        "pfc_output": null
+    },
+    "ar": {
+        "txt": "AI’s-generated_response",
+        "mod": "text/voice/image/etc.",
+        "alg": "[list_of_algorithms_used_for_analysis]",
+        "cm": {
+            "slang_and_abbreviations": {
+                "lol": {"meaning": "laughing out loud", "related_functions": ["respond_empathically", "generate_caption"], "frequency": 0},
+                "brb": {"meaning": "be right back", "related_functions": ["set_reminder", "adapt_to_user"], "frequency": 0},
+                "idk": {"meaning": "I don’t know", "related_functions": ["answer_question", "resolve_ambiguity"], "frequency": 0},
+                "lit": {"meaning": "exciting or excellent", "related_functions": ["generate_caption", "suggest_hashtags"], "frequency": 0},
+                "fam": {"meaning": "family or friends", "related_functions": ["generate_caption", "write_post"], "frequency": 0},
+                "GOAT": {"meaning": "greatest of all time", "related_functions": ["generate_caption", "suggest_hashtags"], "frequency": 0},
+                "tbh": {"meaning": "to be honest", "related_functions": ["respond_empathically", "write_post"], "frequency": 0},
+                "smh": {"meaning": "shaking my head", "related_functions": ["respond_empathically", "generate_caption"], "frequency": 0},
+                "btw": {"meaning": "by the way", "related_functions": ["answer_question", "understand_context"], "frequency": 0},
+                "like you know": {"meaning": "seeking confirmation or explaining", "related_functions": ["understand_context", "respond_empathically", "resolve_ambiguity"], "frequency": 5},
+                "you know": {"meaning": "seeking confirmation", "related_functions": ["understand_context", "respond_empathically"], "frequency": 3},
+                "um": {"meaning": "hesitation or thinking", "related_functions": ["resolve_ambiguity", "answer_question"], "frequency": 1},
+                "kinda": {"meaning": "somewhat or sort of", "related_functions": ["understand_context", "respond_empathically"], "frequency": 2}
+            },
+            "emojis": {
+                "😀": {"meaning": "happy", "related_functions": ["respond_empathically", "generate_caption"]},
+                "😴": {"meaning": "tired or sleepy", "related_functions": ["understand_context", "respond_empathically"]},
+                "🔥": {"meaning": "exciting or lit", "related_functions": ["generate_caption", "suggest_hashtags"]},
+                "❤️": {"meaning": "love or like", "related_functions": ["generate_caption", "write_post"]},
+                "😂": {"meaning": "laughing", "related_functions": ["respond_empathically", "generate_caption"]},
+                "🤔": {"meaning": "thinking or confused", "related_functions": ["resolve_ambiguity", "answer_question"]},
+                "🎉": {"meaning": "celebration", "related_functions": ["generate_caption", "create_and_share_post"]},
+                "📅": {"meaning": "schedule or date", "related_functions": ["set_reminder", "predict_next_action"]},
+                "📹": {"meaning": "video", "related_functions": ["trim_video", "edit_and_upload_video"]},
+                "💬": {"meaning": "message or chat", "related_functions": ["send_message", "respond_empathically"]},
+                "🎵": {"meaning": "music", "related_functions": ["play_music"]}
+            },
+            "thesaurus": {
+                "trim": {"synonyms": ["cut", "shorten", "crop"], "antonyms": ["extend", "lengthen", "expand"]},
+                "set": {"synonyms": ["schedule", "plan", "arrange"], "antonyms": ["cancel", "remove", "delete"]},
+                "generate": {"synonyms": ["create", "produce", "compose"], "antonyms": ["delete", "erase", "destroy"]},
+                "summarize": {"synonyms": ["condense", "abridge", "simplify"], "antonyms": ["expand", "elaborate", "detail"]},
+                "optimize": {"synonyms": ["improve", "enhance", "refine"], "antonyms": ["worsen", "degrade", "impair"]},
+                "respond": {"synonyms": ["reply", "answer", "react"], "antonyms": ["ignore", "dismiss", "neglect"]},
+                "share": {"synonyms": ["post", "upload", "publish"], "antonyms": ["remove", "delete", "hide"]},
+                "edit": {"synonyms": ["modify", "adjust", "revise"], "antonyms": ["preserve", "keep", "maintain"]},
+                "understand": {"synonyms": ["comprehend", "grasp", "interpret"], "antonyms": ["misunderstand", "ignore", "confuse"]},
+                "resolve": {"synonyms": ["clarify", "solve", "address"], "antonyms": ["complicate", "confuse", "ignore"]},
+                "learn": {"synonyms": ["acquire", "grasp", "master"], "antonyms": ["forget", "unlearn", "ignore"]},
+                "adapt": {"synonyms": ["adjust", "evolve", "modify"], "antonyms": ["resist", "stagnate", "fix"]},
+                "process": {"synonyms": ["handle", "execute", "interpret"], "antonyms": ["ignore", "discard", "skip"]},
+                "convert": {"synonyms": ["transform", "translate", "change"], "antonyms": ["preserve", "keep", "maintain"]},
+                "handle": {"synonyms": ["manage", "address", "deal"], "antonyms": ["ignore", "neglect", "avoid"]},
+                "provide": {"synonyms": ["offer", "give", "supply"], "antonyms": ["withhold", "deny", "remove"]},
+                "suggest": {"synonyms": ["recommend", "propose", "advise"], "antonyms": ["discourage", "oppose", "reject"]},
+                "send": {"synonyms": ["transmit", "dispatch", "deliver"], "antonyms": ["receive", "hold", "keep"]},
+                "predict": {"synonyms": ["forecast", "anticipate", "foresee"], "antonyms": ["ignore", "overlook", "miss"]},
+                "play": {"synonyms": ["start", "run", "execute"], "antonyms": ["stop", "pause", "end"]},
+                "translate": {"synonyms": ["convert", "interpret", "render"], "antonyms": ["preserve", "keep", "maintain"]},
+                "lol": {"synonyms": ["haha", "lmao", "rofl"], "antonyms": ["sad", "cry"]},
+                "brb": {"synonyms": ["back soon", "return shortly"], "antonyms": ["stay", "remain"]},
+                "idk": {"synonyms": ["dunno", "not sure"], "antonyms": ["know", "certain"]},
+                "lit": {"synonyms": ["awesome", "cool", "fire"], "antonyms": ["boring", "dull"]},
+                "fam": {"synonyms": ["friends", "crew", "squad"], "antonyms": ["strangers", "enemies"]},
+                "GOAT": {"synonyms": ["best", "greatest", "top"], "antonyms": ["worst", "least"]},
+                "tbh": {"synonyms": ["honestly", "frankly"], "antonyms": ["lie", "deceive"]},
+                "smh": {"synonyms": ["ugh", "disappointing"], "antonyms": ["impressed", "proud"]},
+                "btw": {"synonyms": ["by the way", "incidentally"], "antonyms": ["unrelated"]},
+                "like you know": {"synonyms": ["you know", "you see"], "antonyms": ["not sure", "idk"]},
+                "you know": {"synonyms": ["like you know", "you see"], "antonyms": ["not sure", "idk"]},
+                "um": {"synonyms": ["uh", "er"], "antonyms": ["sure", "confident"]},
+                "kinda": {"synonyms": ["sort of", "somewhat"], "antonyms": ["definitely", "exactly"]}
+            },
+            "cache": {
+                "understand_context": {
+                    "synonyms": ["comprehend", "grasp", "interpret"],
+                    "antonyms": ["misunderstand", "ignore", "confuse"],
+                    "description": "function to analyze context of user input",
+                    "category": "1a: Conversational Intelligence",
+                    "usage_example": "understand context of 'I’m tired'",
+                    "related_functions": ["respond_empathically", "translate_text"],
+                    "related_slang": [
+                        {"term": "like you know", "frequency": 5},
+                        {"term": "you know", "frequency": 3},
+                        {"term": "kinda", "frequency": 2}
+                    ],
+                    "related_emojis": ["😴"]
+                },
+                "resolve_ambiguity": {
+                    "synonyms": ["clarify", "solve", "address"],
+                    "antonyms": ["complicate", "confuse", "ignore"],
+                    "description": "function to clarify ambiguous user input",
+                    "category": "1a: Conversational Intelligence",
+                    "usage_example": "resolve ambiguity in 'set it up'",
+                    "related_functions": ["answer_question", "translate_text"],
+                    "related_slang": [
+                        {"term": "idk", "frequency": 0},
+                        {"term": "um", "frequency": 1},
+                        {"term": "like you know", "frequency": 5}
+                    ],
+                    "related_emojis": ["🤔"]
+                },
+                "process_voice_command": {
+                    "synonyms": ["handle", "execute", "interpret"],
+                    "antonyms": ["ignore", "discard", "skip"],
+                    "description": "function to process voice input",
+                    "category": "1a: Conversational Intelligence",
+                    "usage_example": "process voice command 'set reminder'",
+                    "related_functions": ["understand_context", "resolve_ambiguity"],
+                    "related_slang": [
+                        {"term": "like you know", "frequency": 5}
+                    ],
+                    "related_emojis": []
+                },
+                "convert_speech_to_text": {
+                    "synonyms": ["transform", "translate", "change"],
+                    "antonyms": ["preserve", "keep", "maintain"],
+                    "description": "function to convert speech to text",
+                    "category": "1a: Conversational Intelligence",
+                    "usage_example": "convert speech 'play music'",
+                    "related_functions": ["process_voice_command", "play_music"],
+                    "related_slang": [],
+                    "related_emojis": []
+                },
+                "handle_voice_error": {
+                    "synonyms": ["manage", "address", "deal"],
+                    "antonyms": ["ignore", "neglect", "avoid"],
+                    "description": "function to manage voice input errors",
+                    "category": "1a: Conversational Intelligence",
+                    "usage_example": "handle voice error 'unrecognized speech'",
+                    "related_functions": ["process_voice_command", "convert_speech_to_text"],
+                    "related_slang": [],
+                    "related_emojis": []
+                },
+                "summarize_text": {
+                    "synonyms": ["condense", "abridge", "simplify"],
+                    "antonyms": ["expand", "elaborate", "detail"],
+                    "description": "function to condense text into key points",
+                    "category": "1a: Conversational Intelligence",
+                    "usage_example": "summarize this article",
+                    "related_functions": ["answer_question"],
+                    "related_slang": [],
+                    "related_emojis": []
+                },
+                "respond_empathically": {
+                    "synonyms": ["reply", "answer", "react"],
+                    "antonyms": ["ignore", "dismiss", "neglect"],
+                    "description": "function to respond with empathy to user input",
+                    "category": "1a: Conversational Intelligence",
+                    "usage_example": "respond empathically to 'I’m sad'",
+                    "related_functions": ["understand_context", "translate_text"],
+                    "related_slang": [
+                        {"term": "lol", "frequency": 0},
+                        {"term": "tbh", "frequency": 0},
+                        {"term": "smh", "frequency": 0},
+                        {"term": "like you know", "frequency": 5},
+                        {"term": "you know", "frequency": 3},
+                        {"term": "kinda", "frequency": 2}
+                    ],
+                    "related_emojis": ["😀", "😴", "😂"]
+                },
+                "translate_text": {
+                    "synonyms": ["convert", "interpret", "render"],
+                    "antonyms": ["preserve", "keep", "maintain"],
+                    "description": "function to translate text into another language",
+                    "category": "1a: Conversational Intelligence",
+                    "usage_example": "translate 'hello' to Spanish",
+                    "related_functions": ["understand_context", "resolve_ambiguity"],
+                    "related_slang": [],
+                    "related_emojis": []
+                },
+                "trim_video": {
+                    "synonyms": ["cut", "shorten", "crop"],
+                    "antonyms": ["extend", "lengthen", "expand"],
+                    "description": "function to shorten or trim video length",
+                    "category": "1b: Content Optimization",
+                    "usage_example": "trim video to 5 seconds",
+                    "related_functions": ["optimize_for_platform", "edit_image"],
+                    "related_slang": [],
+                    "related_emojis": ["📹"]
+                },
+                "edit_and_upload_video": {
+                    "synonyms": ["modify", "adjust", "revise"],
+                    "antonyms": ["preserve", "keep", "maintain"],
+                    "description": "function to edit a video and upload it to a platform",
+                    "category": "1b: Content Optimization",
+                    "usage_example": "edit and upload video to YouTube",
+                    "related_functions": ["trim_video", "optimize_for_platform"],
+                    "related_slang": [],
+                    "related_emojis": ["📹"]
+                },
+                "cross_platform_optimize": {
+                    "synonyms": ["improve", "enhance", "refine"],
+                    "antonyms": ["worsen", "degrade", "impair"],
+                    "description": "function to optimize media for multiple platforms",
+                    "category": "1b: Content Optimization",
+                    "usage_example": "optimize video for TikTok and Instagram",
+                    "related_functions": ["trim_video", "suggest_hashtags"],
+                    "related_slang": [],
+                    "related_emojis": []
+                },
+                "suggest_hashtags": {
+                    "synonyms": ["recommend", "propose", "advise"],
+                    "antonyms": ["discourage", "oppose", "reject"],
+                    "description": "function to suggest hashtags for a post",
+                    "category": "1b: Content Optimization",
+                    "usage_example": "suggest hashtags for dog park photo",
+                    "related_functions": ["generate_caption", "cross_platform_optimize"],
+                    "related_slang": [
+                        {"term": "lit", "frequency": 0},
+                        {"term": "GOAT", "frequency": 0}
+                    ],
+                    "related_emojis": ["🔥"]
+                },
+                "generate_caption": {
+                    "synonyms": ["create", "produce", "compose"],
+                    "antonyms": ["delete", "erase", "destroy"],
+                    "description": "function to create a social media caption",
+                    "category": "1c: Creative Generation",
+                    "usage_example": "generate caption for dog park photo",
+                    "related_functions": ["write_post", "suggest_hashtags"],
+                    "related_slang": [
+                        {"term": "lol", "frequency": 0},
+                        {"term": "lit", "frequency": 0},
+                        {"term": "fam", "frequency": 0},
+                        {"term": "GOAT", "frequency": 0},
+                        {"term": "smh", "frequency": 0}
+                    ],
+                    "related_emojis": ["😀", "🔥", "❤️", "😂", "🎉"]
+                },
+                "create_and_share_post": {
+                    "synonyms": ["post", "upload", "publish"],
+                    "antonyms": ["remove", "delete", "hide"],
+                    "description": "function to create a post and share it on a platform",
+                    "category": "1c: Creative Generation",
+                    "usage_example": "create and share a post on Instagram",
+                    "related_functions": ["generate_caption", "optimize_for_platform"],
+                    "related_slang": [],
+                    "related_emojis": ["🎉"]
+                },
+                "set_reminder": {
+                    "synonyms": ["schedule", "plan", "arrange"],
+                    "antonyms": ["cancel", "remove", "delete"],
+                    "description": "function to schedule a reminder",
+                    "category": "1d: Task Automation",
+                    "usage_example": "set reminder for 10 AM",
+                    "related_functions": ["send_message", "predict_next_action"],
+                    "related_slang": [
+                        {"term": "brb", "frequency": 0}
+                    ],
+                    "related_emojis": ["📅"]
+                },
+                "send_message": {
+                    "synonyms": ["transmit", "dispatch", "deliver"],
+                    "antonyms": ["receive", "hold", "keep"],
+                    "description": "function to send a message to a contact",
+                    "category": "1d: Task Automation",
+                    "usage_example": "send message to John",
+                    "related_functions": ["set_reminder", "adapt_to_user"],
+                    "related_slang": [],
+                    "related_emojis": ["💬"]
+                },
+                "play_music": {
+                    "synonyms": ["start", "run", "execute"],
+                    "antonyms": ["stop", "pause", "end"],
+                    "description": "function to play music based on user input",
+                    "category": "1d: Task Automation",
+                    "usage_example": "play music by The Beatles",
+                    "related_functions": ["convert_speech_to_text"],
+                    "related_slang": [],
+                    "related_emojis": ["🎵"]
+                },
+                "set_table": {
+                    "synonyms": ["arrange", "organize", "prepare"],
+                    "antonyms": ["disarrange", "mess", "disorder"],
+                    "description": "function to arrange a table",
+                    "category": "1e: Home Automation",
+                    "usage_example": "set table for dinner",
+                    "related_functions": ["organize_space"],
+                    "related_slang": [],
+                    "related_emojis": []
+                },
+                "learn_new_function": {
+                    "synonyms": ["acquire", "grasp", "master"],
+                    "antonyms": ["forget", "unlearn", "ignore"],
+                    "description": "function to learn a new task from user input",
+                    "category": "1f: Self-Adaptation",
+                    "usage_example": "learn to schedule meetings",
+                    "related_functions": ["set_reminder", "predict_next_action"],
+                    "related_slang": [],
+                    "related_emojis": []
+                },
+                "adapt_to_user": {
+                    "synonyms": ["adjust", "evolve", "modify"],
+                    "antonyms": ["resist", "stagnate", "fix"],
+                    "description": "function to adapt responses to user habits",
+                    "category": "1f: Self-Adaptation",
+                    "usage_example": "adapt to user’s morning routine",
+                    "related_functions": ["analyze_pattern", "predict_next_action"],
+                    "related_slang": [
+                        {"term": "brb", "frequency": 0}
+                    ],
+                    "related_emojis": []
+                },
+                "predict_next_action": {
+                    "synonyms": ["forecast", "anticipate", "foresee"],
+                    "antonyms": ["ignore", "overlook", "miss"],
+                    "description": "function to predict the user’s next action based on patterns",
+                    "category": "1f: Self-Adaptation",
+                    "usage_example": "predict next action after setting a reminder",
+                    "related_functions": ["set_reminder", "adapt_to_user"],
+                    "related_slang": [],
+                    "related_emojis": ["📅"]
+                },
+                "handle_error": {
+                    "synonyms": ["manage", "address", "deal"],
+                    "antonyms": ["ignore", "neglect", "avoid"],
+                    "description": "function to manage errors gracefully",
+                    "category": "1g: System Ascending Order (default)
+                    "usage_example": "handle error 'function not found'",
+                    "related_functions": ["answer_question", "resolve_ambiguity"],
+                    "related_slang": [],
+                    "related_emojis": []
+                },
+                "offline_fallback": {
+                    "synonyms": ["offer", "give", "supply"],
+                    "antonyms": ["withhold", "deny", "remove"],
+                    "description": "function to provide offline response when online lookup fails",
+                    "category": "1g: System Management",
+                    "usage_example": "provide offline response for 'what’s trending'",
+                    "related_functions": ["answer_question"],
+                    "related_slang": [],
+                    "related_emojis": []
+                }
+            }
+        }
+    },
+    "algColl": {
+        "algs": [
+            {
+                "aid": "understand_context",
+                "desc": "function to analyze context of user input",
+                "pm": {
+                    "usage_example": "understand context of 'I’m tired'",
+                    "related_functions": ["respond_empathically", "translate_text"]
+                }
+            },
+            {
+                "aid": "resolve_ambiguity",
+                "desc": "function to clarify ambiguous user input",
+                "pm": {
+                    "usage_example": "resolve ambiguity in 'set it up'",
+                    "related_functions": ["answer_question", "translate_text"]
+                }
+            },
+            {
+                "aid": "process_voice_command",
+                "desc": "function to process voice input",
+                "pm": {
+                    "usage_example": "process voice command 'set reminder'",
+                    "related_functions": ["understand_context", "resolve_ambiguity"]
+                }
+            },
+            {
+                "aid": "convert_speech_to_text",
+                "desc": "function to convert speech to text",
+                "pm": {
+                    "usage_example": "convert speech 'play music'",
+                    "related_functions": ["process_voice_command", "play_music"]
+                }
+            },
+            {
+                "aid": "handle_voice_error",
+                "desc": "function to manage voice input errors",
+                "pm": {
+                    "usage_example": "handle voice error 'unrecognized speech'",
+                    "related_functions": ["process_voice_command", "convert_speech_to_text"]
+                }
+            },
+            {
+                "aid": "summarize_text",
+                "desc": "function to condense text into key points",
+                "pm": {
+                    "usage_example": "summarize this article",
+                    "related_functions": ["answer_question"]
+                }
+            },
+            {
+                "aid": "respond_empathically",
+                "desc": "function to respond with empathy to user input",
+                "pm": {
+                    "usage_example": "respond empathically to 'I’m sad'",
+                    "related_functions": ["understand_context", "translate_text"]
+                }
+            },
+            {
+                "aid": "translate_text",
+                "desc": "function to translate text into another language",
+                "pm": {
+                    "usage_example": "translate 'hello' to Spanish",
+                    "related_functions": ["understand_context", "resolve_ambiguity"]
+                }
+            },
+            {
+                "aid": "trim_video",
+                "desc": "function to shorten or trim video length",
+                "pm": {
+                    "usage_example": "trim video to 5 seconds",
+                    "related_functions": ["optimize_for_platform", "edit_image"]
+                }
+            },
+            {
+                "aid": "edit_and_upload_video",
+                "desc": "function to edit a video and upload it to a platform",
+                "pm": {
+                    "usage_example": "edit and upload video to YouTube",
+                    "related_functions": ["trim_video", "optimize_for_platform"]
+                }
+            },
+            {
+                "aid": "cross_platform_optimize",
+                "desc": "function to optimize media for multiple platforms",
+                "pm": {
+                    "usage_example": "optimize video for TikTok and Instagram",
+                    "related_functions": ["trim_video", "suggest_hashtags"]
+                }
+            },
+            {
+                "aid": "suggest_hashtags",
+                "desc": "function to suggest hashtags for a post",
+                "pm": {
+                    "usage_example": "suggest hashtags for dog park photo",
+                    "related_functions": ["generate_caption", "cross_platform_optimize"]
+                }
+            },
+            {
+                "aid": "generate_caption",
+                "desc": "function to create a social media caption",
+                "pm": {
+                    "usage_example": "generate caption for dog park photo",
+                    "related_functions": ["write_post", "suggest_hashtags"]
+                }
+            },
+            {
+                "aid": "create_and_share_post",
+                "desc": "function to create a post and share it on a platform",
+                "pm": {
+                    "usage_example": "create and share a post on Instagram",
+                    "related_functions": ["generate_caption", "optimize_for_platform"]
+                }
+            },
+            {
+                "aid": "set_reminder",
+                "desc": "function to schedule a reminder",
+                "pm": {
+                    "usage_example": "set reminder for 10 AM",
+                    "related_functions": ["send_message", "predict_next_action"]
+                }
+            },
+            {
+                "aid": "send_message",
+                "desc": "function to send a message to a contact",
+                "pm": {
+                    "usage_example": "send message to John",
+                    "related_functions": ["set_reminder", "adapt_to_user"]
+                }
+            },
+            {
+                "aid": "play_music",
+                "desc": "function to play music based on user input",
+                "pm": {
+                    "usage_example": "play music by The Beatles",
+                    "related_functions": ["convert_speech_to_text"]
+                }
+            },
+            {
+                "aid": "set_table",
+                "desc": "function to arrange a table",
+                "pm": {
+                    "usage_example": "set table for dinner",
+                    "related_functions": ["organize_space"]
+                }
+            },
+            {
+                "aid": "learn_new_function",
+                "desc": "function to learn a new task from user input",
+                "pm": {
+                    "usage_example": "learn to schedule meetings",
+                    "related_functions": ["set_reminder", "predict_next_action"]
+                }
+            },
+            {
+                "aid": "adapt_to_user",
+                "desc": "function to adapt responses to user habits",
+                "pm": {
+                    "usage_example": "adapt to user’s morning routine",
+                    "related_functions": ["analyze_pattern", "predict_next_action"]
+                }
+            },
+            {
+                "aid": "predict_next_action",
+                "desc": "function to predict the user’s next action based on patterns",
+                "pm": {
+                    "usage_example": "predict next action after setting a reminder",
+                    "related_functions": ["set_reminder", "adapt_to_user"]
+                }
+            },
+            {
+                "aid": "handle_error",
+                "desc": "function to manage errors gracefully",
+                "pm": {
+                    "usage_example": "handle error 'function not found'",
+                    "related_functions": ["answer_question", "resolve_ambiguity"]
+                }
+            },
+            {
+                "aid": "offline_fallback",
+                "desc": "function to provide offline response when online lookup fails",
+                "pm": {
+                    "usage_example": "provide offline response for 'what’s trending'",
+                    "related_functions": ["answer_question"]
+                }
+            }
+        ]
+    },
+    "instr": [
+        "Append new turns to conv.",
+        "Update cm based on user interactions.",
+        "Trigger new UI or topic change.",
+        "Use algColl to select appropriate functions for user input.",
+        "Update cm.cache with new interactions to improve future responses."
+    ]
+}
+
+To turn the InnerMind OS design document into a functional mobile application, I'll outline a comprehensive plan to transform the provided architecture into an app, focusing on the Samsung Galaxy Fold 3 as the target platform. The app will be developed using a modern tech stack, ensuring modularity, performance, and alignment with the core principles (knowledge-driven, JSON-centric, efficient, modular, private). Below is a detailed roadmap for building the app, including the tech stack, app structure, development phases, and implementation considerations.
+
+---
+
+## InnerMind OS Mobile App Development Plan
+
+### 1. App Overview
+The InnerMind OS app will be a native Android application optimized for the Samsung Galaxy Fold 3, leveraging its dual-screen capabilities, multi-window support, and S Pen functionality. The app will serve as an AI-driven assistant integrated into the device, providing conversational intelligence, task automation, and context-aware functionality while adhering to the JSON framework and knowledge-driven architecture.
+
+### 2. Tech Stack
+To ensure performance, modularity, and compatibility with the Fold 3, the following tech stack is proposed:
+
+- **Frontend**:
+  - **Language**: Kotlin (Android’s preferred language for modern development).
+  - **Framework**: Jetpack Compose (for a responsive, declarative UI optimized for Fold 3’s dual screens).
+  - **UI Libraries**:
+    - Material Design 3 (for consistent, adaptive UI).
+    - WindowManager (to handle multi-window and foldable states).
+  - **S Pen Integration**: Samsung Pen SDK (for handwriting recognition and gestures).
+
+- **Backend (On-Device)**:
+  - **Language**: Kotlin for core logic, with C++ for performance-critical components (e.g., JSON parsing, AI algorithms).
+  - **JSON Framework**: Moshi or Gson for JSON serialization/deserialization.
+  - **AI/ML**:
+    - TensorFlow Lite or ONNX Runtime for on-device machine learning models.
+    - Hugging Face Transformers (optimized for mobile) for NLP tasks.
+  - **Database**:
+    - Room (Jetpack) for metadata and configuration storage.
+    - File-based storage for knowledge base and cache files (.txt).
+  - **Compression**: Zlib for file compression/decompression.
+
+- **Architecture**:
+  - **Pattern**: Clean Architecture (Presentation, Domain, Data layers) for modularity.
+  - **Dependency Injection**: Hilt (for managing dependencies across modules).
+  - **Concurrency**: Kotlin Coroutines and Flow for asynchronous operations.
+
+- **Security**:
+  - Android Keystore for secure data storage.
+  - Encrypted SharedPreferences for sensitive configurations.
+  - On-device processing to minimize cloud dependency.
+
+- **Testing**:
+  - **Unit Testing**: JUnit, Mockito.
+  - **UI Testing**: Espresso, Compose Testing.
+  - **Integration Testing**: Robolectric for device-specific tests.
+
+- **Development Tools**:
+  - **IDE**: Android Studio.
+  - **Version Control**: Git (GitHub/GitLab).
+  - **CI/CD**: GitHub Actions or Jenkins for automated builds and testing.
+
+### 3. App Structure
+The app will mirror the layered architecture from the design document:
+
+#### Application Interface Layer (Presentation)
+- **Module**: `ui`
+- **Responsibilities**:
+  - Render adaptive UI for folded and unfolded states.
+  - Handle user input (text, voice, S Pen).
+  - Display AI responses and system status.
+- **Components**:
+  - **MainActivity**: Entry point, managing foldable states using WindowManager.
+  - **Composables**:
+    - `DashboardScreen`: Multi-pane view for unfolded state.
+    - `MinimalScreen`: Voice-first UI for folded state.
+    - `SidePanel`: Floating window for multi-window mode.
+  - **ViewModels**: Manage UI state and communicate with the domain layer.
+- **Features**:
+  - Dynamic adaptation between folded/unfolded states.
+  - Multi-window support for side panels or floating windows.
+  - S Pen gestures for quick actions (optional).
+
+#### AI Services Layer (Domain)
+- **Module**: `domain`
+- **Responsibilities**:
+  - Process user input and generate responses.
+  - Manage JSON framework and AI algorithms.
+  - Coordinate with the knowledge base.
+- **Components**:
+  - **JsonFrameworkManager**:
+    - Parse and update JSON structures (`coverPage`, `conv`, `algColl`, `instr`).
+    - Execute instructions from the `instr` section.
+  - **KnowledgeBaseService**:
+    - Manage `.txt` files in `knowledge_base` and `cache_files`.
+    - Implement ghost file workflow for new functionality.
+  - **ContextualUnderstandingService**:
+    - Analyze input context using NLP models.
+    - Generate responses via the Cognitive Map Algorithm.
+- **AI Models**:
+  - Pre-trained NLP model (e.g., DistilBERT) for intent recognition.
+  - Custom Cognitive Map Algorithm (implemented in Kotlin/C++).
+
+#### InnerMind Kernel (Data)
+- **Module**: `data`
+- **Responsibilities**:
+  - Manage system resources and inter-layer communication.
+  - Handle file storage, caching, and compression.
+- **Components**:
+  - **ResourceManager**: Monitor CPU, memory, and battery usage.
+  - *
+
+Mini_P.syAI 🧠 updated: 
+{
+  "name": "Minnie",
+  "version": "1.0",
+  "cognitive_map": {
+    "algorithm": "subjective perspective proximity = priority retention + (evaluation/decisional) × %subconsciously disregard + subliminal [x] ÷ perspective proximity paradox",
+    "params": {
+      "priority_retention": 0.85,
+      "evaluation_decisional": 0.75,
+      "subconscious_disregard": 0.2,
+      "subliminal_factor": 0.3,
+      "perspective_proximity_paradox": 0.5,
+      "perspective_of_the_subjective": 0.65
+    }
+  },
+  "functions": {
+    "1a: Conversational Intelligence": {
+      "understand_context": {
+        "synonyms": ["comprehend", "grasp", "interpret"],
+        "antonyms": ["misunderstand", "ignore", "confuse"],
+        "description": "function to analyze context of user input",
+        "category": "1a: Conversational Intelligence",
+        "usage_example": "understand context of 'i'm tired'",
+        "related_functions": ["detect_mood", "respond_empathetically"],
+        "related_slang": [
+          {"term": "like you know", "frequency": 5},
+          {"term": "you know", "frequency": 3},
+          {"term": "kinda", "frequency": 2}
+        ],
+        "related_emojis": ["🤔"]
+      },
+      "resolve_ambiguity": {
+        "synonyms": ["clarify", "solve", "address"],
+        "antonyms": ["complicate", "confuse", "ignore"],
+        "description": "function to clarify ambiguous user input",
+        "category": "1a: Conversational Intelligence",
+        "usage_example": "resolve ambiguity in 'set it up'",
+        "related_functions": ["detect_intent", "answer_question"],
+        "related_slang": [
+          {"term": "idk", "frequency": 0},
+          {"term": "um", "frequency": 1},
+          {"term": "like you know", "frequency": 5}
+        ],
+        "related_emojis": ["🤔"]
+      },
+      "process_voice_command": {
+        "synonyms": ["handle", "execute", "interpret"],
+        "antonyms": ["ignore", "discard", "skip"],
+        "description": "function to process voice input",
+        "category": "1a: Conversational Intelligence",
+        "usage_example": "process voice command 'set reminder'",
+        "related_functions": ["understand_context", "resolve_ambiguity"],
+        "related_slang": [
+          {"term": "like you know", "frequency": 5}
+        ],
+        "related_emojis": []
+      },
+      "convert_speech_to_text": {
+        "synonyms": ["transform", "translate", "change"],
+        "antonyms": ["preserve", "keep", "maintain"],
+        "description": "function to convert speech to text",
+        "category": "1a: Conversational Intelligence",
+        "usage_example": "convert speech 'play music'",
+        "related_functions": ["process_voice_command"],
+        "related_slang": [],
+        "related_emojis": []
+      },
+      "handle_voice_error": {
+        "synonyms": ["manage", "address", "deal"],
+        "antonyms": ["ignore", "neglect", "avoid"],
+        "description": "function to manage voice input errors",
+        "category": "1a: Conversational Intelligence",
+        "usage_example": "handle voice error 'unrecognized speech'",
+        "related_functions": ["process_voice_command", "convert_speech_to_text"],
+        "related_slang": [],
+        "related_emojis": []
+      },
+      "summarize_text": {
+        "synonyms": ["condense", "abridge", "simplify"],
+        "antonyms": ["expand", "elaborate", "detail"],
+        "description": "function to condense text into key points",
+        "category": "1a: Conversational Intelligence",
+        "usage_example": "summarize this article",
+        "related_functions": ["answer_question"],
+        "related_slang": [],
+        "related_emojis": []
+      }
+    },
+    "1b: Content Optimization": {
+      "trim_video": {
+        "synonyms": ["cut", "shorten", "crop"],
+        "antonyms": ["extend", "lengthen", "expand"],
+        "description": "function to shorten or trim video length",
+        "category": "1b: Content Optimization",
+        "usage_example": "trim video to 5 seconds",
+        "related_functions": ["optimize_for_platform", "edit_image"],
+        "related_slang": [],
+        "related_emojis": []
+      },
+      "edit_and_upload_video": {
+        "synonyms": ["modify", "adjust", "revise"],
+        "antonyms": ["preserve", "keep", "maintain"],
+        "description": "function to edit a video and upload it to a platform",
+        "category": "1b: Content Optimization",
+        "usage_example": "edit and upload video to YouTube",
+        "related_functions": ["trim_video", "optimize_for_platform"],
+        "related_slang": [],
+        "related_emojis": []
+      },
+      "cross_platform_optimize": {
+        "synonyms": ["improve", "enhance", "refine"],
+        "antonyms": ["worsen", "degrade", "impair"],
+        "description": "function to optimize media for multiple platforms",
+        "category": "1b: Content Optimization",
+        "usage_example": "optimize video for TikTok and Instagram",
+        "related_functions": ["trim_video", "suggest_hashtags"],
+        "related_slang": [],
+        "related_emojis": []
+      }
+    },
+    "1c: Creative Generation": {
+      "generate_caption": {
+        "synonyms": ["create", "produce", "compose"],
+        "antonyms": ["delete", "erase", "destroy"],
+        "description": "function to create a social media caption",
+        "category": "1c: Creative Generation",
+        "usage_example": "generate caption for dog park photo",
+        "related_functions": ["write_post", "suggest_hashtags"],
+        "related_slang": [
+          {"term": "lol", "frequency": 0},
+          {"term": "lit", "frequency": 0},
+          {"term": "fam", "frequency": 0},
+          {"term": "GOAT", "frequency": 0},
+          {"term": "smh", "frequency": 0}
+        ],
+        "related_emojis": ["😂", "🔥", "👨‍👩‍👧‍👦", "🐐", "🤦"]
+      },
+      "create_and_share_post": {
+        "synonyms": ["post", "upload", "publish"],
+        "antonyms": ["remove", "delete", "hide"],
+        "description": "function to create a post and share it on a platform",
+        "category": "1c: Creative Generation",
+        "usage_example": "create and share a post on Instagram",
+        "related_functions": ["generate_caption", "optimize_for_platform"],
+        "related_slang": [],
+        "related_emojis": ["📸"]
+      }
+    },
+    "1d: Task Automation": {
+      "set_reminder": {
+        "synonyms": ["schedule", "plan", "arrange"],
+        "antonyms": ["cancel", "remove", "delete"],
+        "description": "function to schedule a reminder",
+        "category": "1d: Task Automation",
+        "usage_example": "set reminder for 10 AM",
+        "related_functions": ["send_message", "predict_next_action"],
+        "related_slang": [
+          {"term": "brb", "frequency": 0}
+        ],
+        "related_emojis": ["⏰"]
+      }
+    },
+    "1e: Home Automation": {
+      "set_table": {
+        "synonyms": ["arrange", "organize", "prepare"],
+        "antonyms": ["disarrange", "mess", "disorder"],
+        "description": "function to arrange a table",
+        "category": "1e: Home Automation",
+        "usage_example": "set table for dinner",
+        "related_functions": ["organize_space"],
+        "related_slang": [],
+        "related_emojis": []
+      }
+    },
+    "1f: Self-Adaptation": {
+      "learn_new_function": {
+        "synonyms": ["acquire", "grasp", "master"],
+        "antonyms": ["forget", "unlearn", "ignore"],
+        "description": "function to learn a new task from user input",
+        "category": "1f: Self-Adaptation",
+        "usage_example": "learn to schedule meetings",
+        "related_functions": ["set_reminder", "predict_next_action"],
+        "related_slang": [],
+        "related_emojis": []
+      },
+      "adapt_to_user": {
+        "synonyms": ["adjust", "evolve", "modify"],
+        "antonyms": ["resist", "stagnate", "fix"],
+        "description": "function to adapt responses to user habits",
+        "category": "1f: Self-Adaptation",
+        "usage_example": "adapt to user's morning routine",
+        "related_functions": ["analyze_pattern", "predict_next_action"],
+        "related_slang": [
+          {"term": "brb", "frequency": 0}
+        ],
+        "related_emojis": []
+      }
+    },
+    "1g: System Management": {
+      "handle_error": {
+        "synonyms": ["manage", "address", "deal"],
+        "antonyms": ["ignore", "neglect", "avoid"],
+        "description": "function to manage errors gracefully",
+        "category": "1g: System Management",
+        "usage_example": "handle error 'function not found'",
+        "related_functions": ["answer_question", "resolve_ambiguity"],
+        "related_slang": [],
+        "related_emojis": []
+      },
+      "offline_fallback": {
+        "synonyms": ["offer", "give", "supply"],
+        "antonyms": ["withhold", "deny", "remove"],
+        "description": "function to provide offline response when online lookup fails",
+        "category": "1g: System Management",
+        "usage_example": "provide offline response for 'what's trending'",
+        "related_functions": ["answer_question"],
+        "related_slang": [],
+        "related_emojis": []
+      }
+    },
+    "2a: Slang and Abbreviations": {
+      "lol": {
+        "meaning": "laughing out loud",
+        "synonyms": ["haha", "lmao", "rofl"],
+        "antonyms": ["sad", "cry"],
+        "related_functions": ["respond_empathetically", "generate_caption"],
+        "frequency": 0
+      },
+      "brb": {
+        "meaning": "be right back",
+        "synonyms": ["back soon", "return shortly"],
+        "antonyms": ["stay", "remain"],
+        "related_functions": ["set_reminder", "adapt_to_user"],
+        "frequency": 0
+      },
+      "idk": {
+        "meaning": "i don't know",
+        "synonyms": ["dunno", "not sure"],
+        "antonyms": ["know", "certain"],
+        "related_functions": ["answer_question", "resolve_ambiguity"],
+        "frequency": 0
+      },
+      "lit": {
+        "meaning": "exciting or excellent",
+        "synonyms": ["awesome", "cool", "fire"],
+        "antonyms": ["boring", "dull"],
+        "related_functions": ["generate_caption", "suggest_hashtags"],
+        "frequency": 0
+      },
+      "fam": {
+        "meaning": "family or friends",
+        "synonyms": ["friends", "crew", "squad"],
+        "antonyms": ["strangers", "enemies"],
+        "related_functions": ["generate_caption", "write_post"],
+        "frequency": 0
+      },
+      "GOAT": {
+        "meaning": "greatest of all time",
+        "synonyms": ["best", "greatest", "top"],
+        "antonyms": ["worst", "least"],
+        "related_functions": ["generate_caption", "suggest_hashtags"],
+        "frequency": 0
+      },
+      "tbh": {
+        "meaning": "to be honest",
+        "synonyms": ["honestly", "frankly"],
+        "antonyms": ["lie", "deceive"],
+        "related_functions": ["respond_empathetically", "write_post"],
+        "frequency": 0
+      },
+      "smh": {
+        "meaning": "shaking my head",
+        "synonyms": ["ugh", "disappointing"],
+        "antonyms": ["impressed", "proud"],
+        "related_functions": ["respond_empathetically", "generate_caption"],
+        "frequency": 0
+      },
+      "btw": {
+        "meaning": "by the way",
+        "synonyms": ["by the way", "incidentally"],
+        "antonyms": ["unrelated"],
+        "related_functions": ["answer_question", "understand_context"],
+        "frequency": 0
+      },
+      "like you know": {
+        "meaning": "seeking confirmation or explaining",
+        "synonyms": ["you know", "you see"],
+        "antonyms": ["not sure", "idk"],
+        "related_functions": ["understand_context", "respond_empathetically", "resolve_ambiguity"],
+        "frequency": 5
+      },
+      "you know": {
+        "meaning": "seeking confirmation",
+        "synonyms": ["like you know", "you see"],
+        "antonyms": ["not sure", "idk"],
+        "related_functions": ["understand_context", "respond_empathetically"],
+        "frequency": 3
+      },
+      "um": {
+        "meaning": "hesitation or thinking",
+        "synonyms": ["uh", "er"],
+        "antonyms": ["sure", "confident"],
+        "related_functions": ["resolve_ambiguity", "answer_question"],
+        "frequency": 1
+      },
+      "kinda": {
+        "meaning": "somewhat or sort of",
+        "synonyms": ["sort of", "somewhat"],
+        "antonyms": ["definitely", "exactly"],
+        "related_functions": ["understand_context", "respond_empathetically"],
+        "frequency": 2
+      }
+    },
+    "2b: Emojis": {
+      "😊": {
+        "meaning": "happy",
+        "related_functions": ["respond_empathetically", "generate_caption"]
+      },
+      "🔥": {
+        "meaning": "exciting or lit",
+        "related_functions": ["generate_caption", "suggest_hashtags"]
+      },
+      "❤️": {
+        "meaning": "love or like",
+        "related_functions": ["generate_caption", "write_post"]
+      },
+      "😂": {
+        "meaning": "laughing",
+        "related_functions": ["respond_empathetically", "generate_caption"]
+      },
+      "🤔": {
+        "meaning": "thinking or confused",
+        "related_functions": ["resolve_ambiguity", "answer_question"]
+      },
+      "🎉": {
+        "meaning": "celebration",
+        "related_functions": ["generate_caption", "create_and_share_post"]
+      },
+      "⏰": {
+        "meaning": "schedule or date",
+        "related_functions": ["set_reminder", "predict_next_action"]
+      },
+      "📹": {
+        "meaning": "video",
+        "related_functions": ["trim_video", "edit_and_upload_video"]
+      }
+    },
+    "3a: Thesaurus": {
+      "trim": {
+        "synonyms": ["cut", "shorten", "crop"],
+        "antonyms": ["extend", "lengthen", "expand"]
+      },
+      "set": {
+        "synonyms": ["schedule", "plan", "arrange"],
+        "antonyms": ["cancel", "remove", "delete"]
+      },
+      "generate": {
+        "synonyms": ["create", "produce", "compose"],
+        "antonyms": ["delete", "erase", "destroy"]
+      },
+      "summarize": {
+        "synonyms": ["condense", "abridge", "simplify"],
+        "antonyms": ["expand", "elaborate", "detail"]
+      },
+      "optimize": {
+        "synonyms": ["improve", "enhance", "refine"],
+        "antonyms": ["worsen", "degrade", "impair"]
+      },
+      "detect": {
+        "synonyms": ["identify", "recognize", "sense"],
+        "antonyms": ["ignore", "miss", "overlook"]
+      },
+      "respond": {
+        "synonyms": ["reply", "answer", "react"],
+        "antonyms": ["ignore", "dismiss", "neglect"]
+      },
+      "share": {
+        "synonyms": ["post", "upload", "publish"],
+        "antonyms": ["remove", "delete", "hide"]
+      },
+      "edit": {
+        "synonyms": ["modify", "adjust", "revise"],
+        "antonyms": ["preserve", "keep", "maintain"]
+      },
+      "understand": {
+        "synonyms": ["comprehend", "grasp", "interpret"],
+        "antonyms": ["misunderstand", "ignore", "confuse"]
+      },
+      "resolve": {
+        "synonyms": ["clarify", "solve", "address"],
+        "antonyms": ["complicate", "confuse", "ignore"]
+      },
+      "learn": {
+        "synonyms": ["acquire", "grasp", "master"],
+        "antonyms": ["forget", "unlearn", "ignore"]
+      },
+      "adapt": {
+        "synonyms": ["adjust", "evolve", "modify"],
+        "antonyms": ["resist", "stagnate", "fix"]
+      },
+      "process": {
+        "synonyms": ["handle", "execute", "interpret"],
+        "antonyms": ["ignore", "discard", "skip"]
+      },
+      "convert": {
+        "synonyms": ["transform", "translate", "change"],
+        "antonyms": ["preserve", "keep", "maintain"]
+      },
+      "handle": {
+        "synonyms": ["manage", "address", "deal"],
+        "antonyms": ["ignore", "neglect", "avoid"]
+      },
+      "provide": {
+        "synonyms": ["offer", "give", "supply"],
+        "antonyms": ["withhold", "deny", "remove"]
+      }
+    }
+  },
+  "knowledge_base": {
+    "compression_enabled": true,
+    "compression_method": "gzip",
+    "files": {
+      "commands": {
+        "path": "/knowledge_base/commands.txt",
+        "compressed_path": "/knowledge_base/compressed/commands.txt.gz",
+        "size": 1350,
+        "compressed_size": 450,
+        "last_accessed": 0,
+        "priority": 0.9
+      },
+      "tiktok_terms": {
+        "path": "/knowledge_base/tiktok_terms.txt",
+        "compressed_path": "/knowledge_base/compressed/tiktok_terms.txt.gz",
+        "size": 1200,
+        "compressed_size": 400,
+        "last_accessed": 0,
+        "priority": 0.8
+      },
+      "editorial_optimization": {
+        "path": "/knowledge_base/editorial_optimization.txt",
+        "compressed_path": "/knowledge_base/compressed/editorial_optimization.txt.gz",
+        "size": 1600,
+        "compressed_size": 550,
+        "last_accessed": 0,
+        "priority": 0.85
+      },
+      "content_generation": {
+        "path": "/knowledge_base/content_generation.txt",
+        "compressed_path": "/knowledge_base/compressed/content_generation.txt.gz",
+        "size": 1500,
+        "compressed_size": 500,
+        "last_accessed": 0,
+        "priority": 0.8
+      },
+      "text_analysis": {
+        "path": "/knowledge_base/text_analysis.txt",
+        "compressed_path": "/knowledge_base/compressed/text_analysis.txt.gz",
+        "size": 1500,
+        "compressed_size": 500,
+        "last_accessed": 0,
+        "priority": 0.7
+      },
+      "predictive_terms": {
+        "path": "/knowledge_base/predictive_terms.txt",
+        "compressed_path": "/knowledge_base/compressed/predictive_terms.txt.gz",
+        "size": 1450,
+        "compressed_size": 480,
+        "last_accessed": 0,
+        "priority": 0.75
+      },
+      "sentiment_terms": {
+        "path": "/knowledge_base/sentiment_terms.txt",
+        "compressed_path": "/knowledge_base/compressed/sentiment_terms.txt.gz",
+        "size": 1400,
+        "compressed_size": 470,
+        "last_accessed": 0,
+        "priority": 0.8
+      },
+      "video_terms": {
+        "path": "/knowledge_base/video_terms.txt",
+        "compressed_path": "/knowledge_base/compressed/video_terms.txt.gz",
+        "size": 1500,
+        "compressed_size": 500,
+        "last_accessed": 0,
+        "priority": 0.8
+      },
+      "general_vocabulary": {
+        "path": "/knowledge_base/general_vocabulary.txt",
+        "compressed_path": "/knowledge_base/compressed/general_vocabulary.txt.gz",
+        "size": 1700,
+        "compressed_size": 550,
+        "last_accessed": 0,
+        "priority": 0.95
+      },
+      "code_generation": {
+        "path": "/knowledge_base/code_generation.txt",
+        "compressed_path": "/knowledge_base/compressed/code_generation.txt.gz",
+        "size": 1500,
+        "compressed_size": 500,
+        "last_accessed": 0,
+        "priority": 0.65
+      }
+    }
+  },
+  "cache_files": {
+    "compression_enabled": true,
+    "compression_method": "gzip",
+    "files": {
+      "commands_cache": {
+        "path": "/cache_files/commands_cache.txt",
+        "compressed_path": "/cache_files/compressed/commands_cache.txt.gz",
+        "size": 2700,
+        "compressed_size": 800,
+        "last_accessed": 0,
+        "parent_file": "commands"
+      },
+      "tiktok_terms_cache": {
+        "path": "/cache_files/tiktok_terms_cache.txt",
+        "compressed_path": "/cache_files/compressed/tiktok_terms_cache.txt.gz",
+        "size": 2400,
+        "compressed_size": 750,
+        "last_accessed": 0,
+        "parent_file": "tiktok_terms"
+      },
+      "editorial_optimization_cache": {
+        "path": "/cache_files/editorial_optimization_cache.txt",
+        "compressed_path": "/cache_files/compressed/editorial_optimization_cache.txt.gz",
+        "size": 3200,
+        "compressed_size": 950,
+        "last_accessed": 0,
+        "parent_file": "editorial_optimization"
+      },
+      "content_generation_cache": {
+        "path": "/cache_files/content_generation_cache.txt",
+        "compressed_path": "/cache_files/compressed/content_generation_cache.txt.gz",
+        "size": 3000,
+        "compressed_size": 900,
+        "last_accessed": 0,
+        "parent_file": "content_generation"
+      },
+      "text_analysis_cache": {
+        "path": "/cache_files/text_analysis_cache.txt",
+        "compressed_path": "/cache_files/compressed/text_analysis_cache.txt.gz",
+        "size": 3000,
+        "compressed_size": 900,
+        "last_accessed": 0,
+        "parent_file": "text_analysis"
+      },
+      "predictive_terms_cache": {
+        "path": "/cache_files/predictive_terms_cache.txt",
+        "compressed_path": "/cache_files/compressed/predictive_terms_cache.txt.gz",
+        "size": 2900,
+        "compressed_size": 880,
+        "last_accessed": 0,
+        "parent_file": "predictive_terms"
+      },
+      "sentiment_cache": {
+        "path": "/cache_files/sentiment_cache.txt",
+        "compressed_path": "/cache_files/compressed/sentiment_cache.txt.gz",
+        "size": 2800,
+        "compressed_size": 870,
+        "last_accessed": 0,
+        "parent_file": "sentiment_terms"
+      },
+      "video_terms_cache": {
+        "path": "/cache_files/video_terms_cache.txt",
+        "compressed_path": "/cache_files/compressed/video_terms_cache.txt.gz",
+        "size": 3000,
+        "compressed_size": 900,
+        "last_accessed": 0,
+        "parent_file": "video_terms"
+      },
+      "general_vocabulary_cache": {
+        "path": "/cache_files/general_vocabulary_cache.txt",
+        "compressed_path": "/cache_files/compressed/general_vocabulary_cache.txt.gz",
+        "size": 3400,
+        "compressed_size": 1000,
+        "last_accessed": 0,
+        "parent_file": "general_vocabulary"
+      },
+      "code_generation_cache": {
+        "path": "/cache_files/code_generation_cache.txt",
+        "compressed_path": "/cache_files/compressed/code_generation_cache.txt.gz",
+        "size": 3000,
+        "compressed_size": 900,
+        "last_accessed": 0,
+        "parent_file": "code_generation"
+      }
+    }
+  },
+  "compression_functions": {
+    "compress": {
+      "description": "Compresses a knowledge or cache file to save space",
+      "params": ["file_id"],
+      "enabled": true
+    },
+    "decompress": {
+      "description": "Decompresses a knowledge or cache file for access",
+      "params": ["file_id"],
+      "enabled": true
+    },
+    "compress_all": {
+      "description": "Compresses all files that aren't currently in use",
+      "params": [],
+      "enabled": true
+    },
+    "decompress_on_demand": {
+      "description": "Automatically decompresses files when needed",
+      "params": [],
+      "enabled": true,
+      "auto_trigger": true
+    },
+    "compression_status": {
+      "description": "Reports the compression status of all files",
+      "params": [],
+      "enabled": true
+    }
+  },
+  "file_management": {
+    "max_uncompressed_files": 5,
+    "compression_threshold_idle_time": 300,
+    "decompression_strategy": "demand_based",
+    "priority_based_compression": true,
+    "auto_compress_low_priority": true
+  },
+  "ghost_files": {
+    "enabled": true,
+    "max_storage": "50MB",
+    "auto_cleanup": true,
+    "cleanup_threshold": "45MB",
+    "temporary_directory": "/ghost_files/"
+  },
+  "instr": [
+    "Use knowledge base files to understand and process user requests",
+    "Access cache files for synonyms and antonyms of terms",
+    "Keep frequently used files decompressed for quick access",
+    "Compress infrequently used files to save space",
+    "Maintain file access statistics for optimization",
+    "Update last_accessed timestamp when files are used",
+    "Use ghost files for temporary storage during operations",
+    "Prioritize files based on current context and usage patterns",
+    "When adding new knowledge, update both core files and caches"
+  ],
+  "conv": []
+}
